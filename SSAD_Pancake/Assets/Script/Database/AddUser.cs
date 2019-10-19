@@ -49,15 +49,27 @@ public class AddUser : MonoBehaviour
 
     public void writeNewUser(string userid, string useremail)
     {
+        StaticVariable.UserProfile.userid = userid;
+        StaticVariable.UserProfile.email = useremail;
+
         Debug.Log("New user created");
         User user = new User(userid, useremail);
         string json = JsonUtility.ToJson(user);
 
         Avatar avatar = new Avatar("0", "0", "0");
+        StaticVariable.UserProfile.avatar = avatar;
         string json2 = JsonUtility.ToJson(avatar);
 
+
         world world = new world("000", "000", "000", "000");
+        Universe universe = new Universe();
+        universe.world1 = world;
+        universe.world2 = world;
+        universe.world3 = world;
+        universe.world4 = world;
+        StaticVariable.UserProfile.universe = universe;
         string json3 = JsonUtility.ToJson(world);
+
 
         mDatabaseRef.Child("users").Child(userid).SetRawJsonValueAsync(json);
         mDatabaseRef.Child("users").Child(userid).Child("avatar").SetRawJsonValueAsync(json2);
@@ -125,9 +137,15 @@ public class AddUser : MonoBehaviour
     {
         Avatar avatar = new Avatar(headgear, head, body);
         string json2 = JsonUtility.ToJson(avatar);
+        StaticVariable.UserProfile.avatar = avatar;
+
+        if (StaticVariable.UserID == null)
+        {
+            StaticVariable.UserID = "user1";
+        }
 
         Debug.Log("updating " + headgear + " " + head + " " + body);
 
-        mDatabaseRef.Child("users").Child("abcdefghi").Child("avatar").SetRawJsonValueAsync(json2);
+        mDatabaseRef.Child("users").Child(StaticVariable.UserID).Child("avatar").SetRawJsonValueAsync(json2);
     }
 }
