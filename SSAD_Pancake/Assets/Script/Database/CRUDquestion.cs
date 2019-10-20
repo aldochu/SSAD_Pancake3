@@ -152,7 +152,7 @@ public class CRUDquestion : MonoBehaviour
                   questionList[index] = new GetQuestion();
                   questionList[index].UniqueKey = s.Key;
                   questionList[index++].question = JsonUtility.FromJson<UploadQuestion>(s.GetRawJsonValue());
-
+                  
 
                   //Debug.Log("Key: " + questionList[index - 1].UniqueKey);
                   //Debug.Log("Question: " + questionList[index - 1].question.question);
@@ -165,6 +165,7 @@ public class CRUDquestion : MonoBehaviour
       });
 
     }
+  
 
     public void studentAddNewQuestions(string userid, GetQuestion[] questions,int size)
     {

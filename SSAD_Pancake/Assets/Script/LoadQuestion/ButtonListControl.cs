@@ -11,15 +11,24 @@ public class ButtonListControl : MonoBehaviour
     public CRUDquestion crudQuestion;
 
     private GetQuestion[] questionlist;
+    private string difficulty;
     private string world = "world1";
     private string chap = "chap1";
-    private string difficulty = "easy"; 
     private bool listGot = false;
+    private string chapter;
 
     private int numQuestions = 10;
+
     private void Start()
     {
-        crudQuestion.getQuestion("world1", "chap1", "easy", callbackFunc);
+        chapter = QuestionData.chapter.ToString();
+        crudQuestion.getQuestion("world1", "chap"+chapter, difficulty = "easy", callbackFunc);
+        crudQuestion.getQuestion("world1", "chap" + chapter, difficulty = "hard", callbackFunc);
+        crudQuestion.getQuestion("world1", "chap" + chapter, difficulty = "normal", callbackFunc);
+        
+
+
+
     }
 
     private void Update()
@@ -46,6 +55,6 @@ public class ButtonListControl : MonoBehaviour
 
     public void ButtonClicked(int questionId)
     {
-        GameObject.Find("SceneController").GetComponent<ModifyChapter>().changeScene("EditQandA", world, chap, difficulty, questionlist[questionId]);
+        GameObject.Find("SceneController").GetComponent<ModifyChapter>().changeScene("EditQandA", world, chap, difficulty, questionlist[questionId], questionlist[questionId].UniqueKey);
     }
 }

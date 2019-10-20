@@ -10,7 +10,9 @@ public class ModifyChapter : MonoBehaviour
     public Dropdown dropdown;
     public InputField question;
     public InputField a1, a2, a3, a4, correctAns;
-
+    public string difficulty;
+    public string id;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,7 @@ public class ModifyChapter : MonoBehaviour
     }
 
     //change scene
-    public void changeScene(string sceneName, string world, string chap, string difficulty, GetQuestion questionObj)
+    public void changeScene(string sceneName, string world, string chap, string difficulty, GetQuestion questionObj, string id)
     {
         PlayerPrefs.SetString("qn", questionObj.question.question);
         PlayerPrefs.SetString("a1", questionObj.question.ans1);
@@ -37,6 +39,10 @@ public class ModifyChapter : MonoBehaviour
         PlayerPrefs.SetString("a4", questionObj.question.ans4);
         PlayerPrefs.SetString("ca", questionObj.question.correctAns);
         PlayerPrefs.SetString("difficulty", difficulty);
+        
+        this.id = id;
+        this.difficulty = difficulty;
+        Debug.Log("Difficulty: " + this.difficulty);
 
         SceneManager.LoadScene(sceneName);
     }
@@ -51,5 +57,4 @@ public class ModifyChapter : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
-
 }
