@@ -11,7 +11,7 @@ public class ButtonListControl : MonoBehaviour
     public CRUDquestion crudQuestion;
 
     private GetQuestion[] questionlist;
-    private string difficulty;
+    private string difficulty = "easy";
     private string world = "world1";
     private string chap = "chap1";
     private bool listGot = false;
@@ -22,13 +22,7 @@ public class ButtonListControl : MonoBehaviour
     private void Start()
     {
         chapter = QuestionData.chapter.ToString();
-        crudQuestion.getQuestion("world1", "chap"+chapter, difficulty = "easy", callbackFunc);
-        crudQuestion.getQuestion("world1", "chap" + chapter, difficulty = "hard", callbackFunc);
-        crudQuestion.getQuestion("world1", "chap" + chapter, difficulty = "normal", callbackFunc);
-        
-
-
-
+        crudQuestion.getQuestion(world, chap, difficulty, callbackFunc);
     }
 
     private void Update()
@@ -49,6 +43,7 @@ public class ButtonListControl : MonoBehaviour
     public void callbackFunc(GetQuestion[] questionList)
     {
         this.questionlist = questionList;
+        //Debug.Log(questionList.Length);
         //this.numQuestions = questionList.Length;
         listGot = true;
     }
