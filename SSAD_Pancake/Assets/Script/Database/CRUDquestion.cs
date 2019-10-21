@@ -128,6 +128,11 @@ public class CRUDquestion : MonoBehaviour
         AddNewQuestion(world, chap, newDifficulty, question.question);
     }
 
+    public void DeleteQuestion(string world, string chap, string difficulty, string questionID)
+    {
+        mDatabaseRef.Child("question").Child(world).Child(chap).Child(difficulty).Child(questionID).SetValueAsync(null);
+    }
+
     public void getQuestion(string world, string chap, string difficulty, System.Action<GetQuestion[]> callback)
     {
         FirebaseDatabase.DefaultInstance
