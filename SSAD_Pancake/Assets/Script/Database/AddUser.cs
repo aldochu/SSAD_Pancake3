@@ -126,8 +126,8 @@ public class AddUser : MonoBehaviour
 
               StaticVariable.UserProfile = JsonUtility.FromJson<User>(snapshot.GetRawJsonValue());
 
-              Debug.Log("userid is: " + StaticVariable.UserProfile.userid + "  , email is: " + StaticVariable.UserProfile.email + "  , My avatar: " + StaticVariable.UserProfile.avatar.headgear);
-              Debug.Log("world1: chap1: " + StaticVariable.UserProfile.universe.world1.chap1);
+              //Debug.Log("userid is: " + StaticVariable.UserProfile.userid + "  , email is: " + StaticVariable.UserProfile.email + "  , My avatar: " + StaticVariable.UserProfile.avatar.headgear);
+              //Debug.Log("world1: chap1: " + StaticVariable.UserProfile.universe.world1.chap1);
           }
       });
 

@@ -97,6 +97,8 @@ public class CRUDScores : MonoBehaviour
 
               Debug.Log("Code Runs");
               DataSnapshot snapshot = task.Result;
+
+              
               OrderedScoreList = new StudentScores[12];
               for (int i = 0; i < 12; i++)
               {
@@ -108,20 +110,25 @@ public class CRUDScores : MonoBehaviour
               StudentScores[] scoresList = new StudentScores[200];
               foreach (DataSnapshot s in snapshot.Children)
               {
-                  Debug.Log(index+s.GetRawJsonValue());
+                  //Debug.Log(index+s.GetRawJsonValue());
                   scoresList[index] = new StudentScores();
                   scoresList[index++] = JsonUtility.FromJson<StudentScores>(s.GetRawJsonValue());
               }
-                Debug.Log(index);
+                //Debug.Log(index);
             //   StudentScores[] OrderedScoreList = new StudentScores[index];
               for (int i = 0; i < 12 && i<index; i++)
               {
                   OrderedScoreList[i] = scoresList[index-i-1];
-                  Debug.Log("Score: " + OrderedScoreList[i].name);
+                  //Debug.Log("Score: " + OrderedScoreList[i].name);
               }
 
+              if (index == 0)
+              {
+                  callback(false);
+              }
+              else
               callback(true);
-              Debug.Log("Code End");
+              //Debug.Log("Code End");
          }
       });
     }
@@ -148,12 +155,12 @@ public class CRUDScores : MonoBehaviour
             //need to check whether it exist in database
             if (studentScore == null)
             {
-                Debug.Log("it's null");
+                //Debug.Log("it's null");
                 callback(null);
             }
             else
             {
-                Debug.Log("attemp:" + studentScore.attempt + "  , name is: " + studentScore.name + "  , score: " + studentScore.scores);
+                //Debug.Log("attemp:" + studentScore.attempt + "  , name is: " + studentScore.name + "  , score: " + studentScore.scores);
                 callback(studentScore);
             }
                 
@@ -240,12 +247,12 @@ public class CRUDScores : MonoBehaviour
             //need to check whether it exist in database
             if (studentScore == null)
             {
-                Debug.Log("it's null");
+                //Debug.Log("it's null");
                 callback(null);
             }
             else
             {
-                Debug.Log("attemp:" + studentScore.attempt + "  , name is: " + studentScore.name + "  , score: " + studentScore.scores);
+                //Debug.Log("attemp:" + studentScore.attempt + "  , name is: " + studentScore.name + "  , score: " + studentScore.scores);
                 callback(studentScore);
             }
 
