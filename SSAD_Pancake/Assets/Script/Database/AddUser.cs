@@ -53,7 +53,12 @@ public class AddUser : MonoBehaviour
         StaticVariable.UserProfile.email = useremail;
 
         Debug.Log("New user created");
-        User user = new User(userid, useremail);
+
+
+        string[] myusername = useremail.Split('@');
+
+        Debug.Log(myusername[0]+ useremail);
+        User user = new User(myusername[0], useremail);
         string json = JsonUtility.ToJson(user);
 
         Avatar avatar = new Avatar("0", "0", "0");
