@@ -1316,6 +1316,8 @@ MonoBehaviour:
   a3: {fileID: 0}
   a4: {fileID: 0}
   correctAns: {fileID: 0}
+  difficulty: 
+  id: 
 --- !u!4 &740368853
 Transform:
   m_ObjectHideFlags: 0
