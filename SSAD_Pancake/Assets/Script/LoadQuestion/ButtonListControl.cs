@@ -18,8 +18,8 @@ public class ButtonListControl : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(QuestionData.difficulty);
-        crudQuestion.getQuestion(QuestionData.world, QuestionData.chapter, QuestionData.difficulty, callbackFunc);
+        try { crudQuestion.getQuestion(QuestionData.world, QuestionData.chapter, "easy", callbackFunc); QuestionData.difficulty = "easy"; } catch { }
+        Debug.Log("$$$$$$" + QuestionData.difficulty);
     }
 
     private void Update()
@@ -59,7 +59,7 @@ public class ButtonListControl : MonoBehaviour
     public void callbackFunc(GetQuestion[] questionList)
     {
         this.questionlist = questionList;
-        this.numQuestions = questionList.Length;
+        this.numQuestions = 10; //questionList.Length;
         listGot = true;
     }
 

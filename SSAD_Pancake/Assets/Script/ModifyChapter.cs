@@ -28,13 +28,13 @@ public class ModifyChapter : MonoBehaviour
     void Start()
     {
         chapterString = QuestionData.chapter;
-        dropdown = GameObject.Find("DifficultyDropdown").GetComponent<Dropdown>();
-        dropValuebefore = dropdown.options[dropdown.value].text;
-        infoText = GameObject.Find("InfoText");
-        infoText.SetActive(false);
-        
         try
         {
+            dropdown = GameObject.Find("DifficultyDropdown").GetComponent<Dropdown>();
+            dropValuebefore = dropdown.options[dropdown.value].text;
+            infoText = GameObject.Find("InfoText");
+            infoText.SetActive(false);
+
             GameObject.Find("InputQuestion").GetComponent<InputField>().text = PlayerPrefs.GetString("qn");
             GameObject.Find("InputAnswer1").GetComponent<InputField>().text = PlayerPrefs.GetString("a1");
             GameObject.Find("InputAnswer2").GetComponent<InputField>().text = PlayerPrefs.GetString("a2");
@@ -205,8 +205,7 @@ public class ModifyChapter : MonoBehaviour
         
         crudQuestion.DeleteQuestion(QuestionData.world, chapterString, dropValuebefore, StaticVariable.id, callbackFunc);
         GameObject.Find("SceneController").GetComponent<ModifyChapter>().goBack("QuestionOverview");
-        buttonListControl.refreshList();
-        
+       
     }
 
     public void callbackFunc()
