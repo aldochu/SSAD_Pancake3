@@ -28,20 +28,36 @@ public class ModifyChapter : MonoBehaviour
     void Start()
     {
         chapterString = QuestionData.chapter;
+        dropdown = GameObject.Find("DifficultyDropdown").GetComponent<Dropdown>();
+        infoText = GameObject.Find("InfoText");
+        infoText.SetActive(false);
+
+        if (QuestionData.difficulty.Equals("easy"))
+        {
+            dropdown.value = 0;
+            dropValuebefore = dropdown.options[0].text;
+        }
+        else if (QuestionData.difficulty.Equals("normal"))
+        {
+            dropdown.value = 1;
+            dropValuebefore = dropdown.options[1].text;
+        }
+        else
+        {
+            dropdown.value = 2;
+            dropValuebefore = dropdown.options[2].text;
+
+        }
+
         try
         {
-            dropdown = GameObject.Find("DifficultyDropdown").GetComponent<Dropdown>();
-            dropValuebefore = dropdown.options[dropdown.value].text;
-            infoText = GameObject.Find("InfoText");
-            infoText.SetActive(false);
-
             GameObject.Find("InputQuestion").GetComponent<InputField>().text = PlayerPrefs.GetString("qn");
             GameObject.Find("InputAnswer1").GetComponent<InputField>().text = PlayerPrefs.GetString("a1");
             GameObject.Find("InputAnswer2").GetComponent<InputField>().text = PlayerPrefs.GetString("a2");
             GameObject.Find("InputAnswer3").GetComponent<InputField>().text = PlayerPrefs.GetString("a3");
             GameObject.Find("InputAnswer4").GetComponent<InputField>().text = PlayerPrefs.GetString("a4");
             GameObject.Find("CorrectAnswer").GetComponent<InputField>().text = PlayerPrefs.GetString("ca");
-            GameObject.Find("DifficultyDropdown").GetComponent<Dropdown>().value = PlayerPrefs.GetString("difficulty") == "easy" ? 0 : PlayerPrefs.GetString("difficulty") == "medium" ? 1 : 2;
+            //GameObject.Find("DifficultyDropdown").GetComponent<Dropdown>().value = PlayerPrefs.GetString("difficulty") == "easy" ? 0 : PlayerPrefs.GetString("difficulty") == "medium" ? 1 : 2;
         } catch { }
 
     }
@@ -50,6 +66,7 @@ public class ModifyChapter : MonoBehaviour
     public void changeScene(string sceneName, string world, string chap, string difficulty, GetQuestion questionObj, string id)
     {
         SceneManager.LoadScene(sceneName);
+        
 
         PlayerPrefs.SetString("qn", questionObj.question.question);
         PlayerPrefs.SetString("a1", questionObj.question.ans1);
@@ -60,6 +77,9 @@ public class ModifyChapter : MonoBehaviour
         PlayerPrefs.SetString("difficulty", difficulty);
 
         StaticVariable.id = id;
+        QuestionData.difficulty = difficulty;
+                
+        Debug.Log("Difficulty: " + QuestionData.difficulty);
         Debug.Log("ID: " + StaticVariable.id);
     }
 

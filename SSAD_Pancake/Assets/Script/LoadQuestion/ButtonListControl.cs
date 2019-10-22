@@ -59,7 +59,7 @@ public class ButtonListControl : MonoBehaviour
     public void callbackFunc(GetQuestion[] questionList)
     {
         this.questionlist = questionList;
-        this.numQuestions = 10; //questionList.Length;
+        this.numQuestions = questionList.Length;
         listGot = true;
     }
 
