@@ -128,9 +128,10 @@ public class CRUDquestion : MonoBehaviour
         AddNewQuestion(world, chap, newDifficulty, question.question);
     }
 
-    public void DeleteQuestion(string world, string chap, string difficulty, string questionID)
+    public void DeleteQuestion(string world, string chap, string difficulty, string questionID, System.Action callback)
     {
         mDatabaseRef.Child("question").Child(world).Child(chap).Child(difficulty).Child(questionID).SetValueAsync(null);
+        callback();
     }
 
     public void getQuestion(string world, string chap, string difficulty, System.Action<GetQuestion[]> callback)
