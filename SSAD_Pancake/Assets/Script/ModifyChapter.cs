@@ -201,10 +201,16 @@ public class ModifyChapter : MonoBehaviour
         Debug.Log("Chapter: " + chapterString);
         Debug.Log("Difficulty: " + dropValuebefore);
         Debug.Log("ID: " + StaticVariable.id);
+
         
-        crudQuestion.DeleteQuestion("world1", "chap" + chapterString, dropValuebefore, StaticVariable.id);
+        crudQuestion.DeleteQuestion(QuestionData.world, chapterString, dropValuebefore, StaticVariable.id, callbackFunc);
         GameObject.Find("SceneController").GetComponent<ModifyChapter>().goBack("QuestionOverview");
         buttonListControl.refreshList();
         
+    }
+
+    public void callbackFunc()
+    {
+
     }
 }
