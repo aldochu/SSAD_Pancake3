@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonListControl : MonoBehaviour
 {
@@ -11,30 +12,45 @@ public class ButtonListControl : MonoBehaviour
     public CRUDquestion crudQuestion;
 
     private GetQuestion[] questionlist;
-    private string difficulty = "easy";
-    private string world = "world1";
-    private string chap = "chap1";
-    private bool listGot = false;
-    private string chapter;
-
-    private int numQuestions = 10;
+    public bool listGot;
+    private List<GameObject> buttons = new List<GameObject>();
+    private int numQuestions;
 
     private void Start()
     {
-        chapter = QuestionData.chapter.ToString();
-        crudQuestion.getQuestion(world, chap, difficulty, callbackFunc);
+        Debug.Log(QuestionData.difficulty);
+        crudQuestion.getQuestion(QuestionData.world, QuestionData.chapter, QuestionData.difficulty, callbackFunc);
     }
 
     private void Update()
     {
         if (listGot)
         {
+
+            if (buttons.Count > 0)
+            {
+                foreach (GameObject button in buttons)
+                {
+                    Destroy(button.gameObject);
+                }
+                buttons.Clear();
+            }
+
             for (int i = 1; i < numQuestions + 1; i++)
             {
-                GameObject button = Instantiate(buttonTemplate) as GameObject;
-                button.SetActive(true);
-                button.GetComponent<ButtonListButton>().SetText(questionlist[i].question.question, i);
-                button.transform.SetParent(buttonTemplate.transform.parent, false);
+               
+                if (questionlist[i] == null)
+                {
+                    listGot = false;
+                }
+                else
+                {
+                    GameObject button = Instantiate(buttonTemplate) as GameObject;
+                    button.SetActive(true);
+                    button.GetComponent<ButtonListButton>().SetText(questionlist[i].question.question, i);
+                    button.transform.SetParent(buttonTemplate.transform.parent, false);
+                    buttons.Add(button);
+                }
             }
             listGot = false;
         }
@@ -43,13 +59,18 @@ public class ButtonListControl : MonoBehaviour
     public void callbackFunc(GetQuestion[] questionList)
     {
         this.questionlist = questionList;
-        //Debug.Log(questionList.Length);
-        //this.numQuestions = questionList.Length;
+        this.numQuestions = questionList.Length;
         listGot = true;
     }
 
     public void ButtonClicked(int questionId)
     {
-        GameObject.Find("SceneController").GetComponent<ModifyChapter>().changeScene("EditQandA", world, chap, difficulty, questionlist[questionId], questionlist[questionId].UniqueKey);
+        GameObject.Find("SceneController").GetComponent<ModifyChapter>().changeScene("EditQandA", QuestionData.world, QuestionData.chapter, QuestionData.difficulty, questionlist[questionId], questionlist[questionId].UniqueKey);
+    }
+
+    public void refreshList()
+    {
+        Debug.Log("******************"+ QuestionData.difficulty);
+        crudQuestion.getQuestion(QuestionData.world, QuestionData.chapter, QuestionData.difficulty, callbackFunc);
     }
 }

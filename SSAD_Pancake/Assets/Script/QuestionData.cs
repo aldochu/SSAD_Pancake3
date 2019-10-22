@@ -1,7 +1,7 @@
 ﻿
 public static class QuestionData
 {
-    public static int chapter;
-    public static int question;
-    public static int difficulty;
+    public static string chapter = "chap1";
+    public static string world = "world1";
+    public static string difficulty = "easy";
 }

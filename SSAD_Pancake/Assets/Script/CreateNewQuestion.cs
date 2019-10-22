@@ -13,7 +13,6 @@ public class CreateNewQuestion : MonoBehaviour
     public Dropdown dropdown;
     public string dropValue;
     public int dropIndex;
-    public int chapter;
     public string chapterString;
 
     private GameObject infoText;
@@ -21,8 +20,7 @@ public class CreateNewQuestion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        chapter = QuestionData.chapter;
-        chapterString = chapter.ToString();
+        chapterString = QuestionData.chapter;
         dropdown = GameObject.Find("DifficultyDropdown").GetComponent<Dropdown>();
         infoText = GameObject.Find("InfoText");
         infoText.SetActive(false);
@@ -59,28 +57,37 @@ public class CreateNewQuestion : MonoBehaviour
         bool comp3 = correctAns.Equals(ans3);
         bool comp4 = correctAns.Equals(ans4);
 
+        Debug.Log(QuestionData.world);
+        Debug.Log(chapterString);
+        Debug.Log(question);
+        Debug.Log(ans1);
+        Debug.Log(ans2);
+        Debug.Log(correctAns);
+        Debug.Log(dropValue);
+
+        
         if (comp1 == true)
         {
             UploadQuestion uploadQuestion = new UploadQuestion(question, ans1, ans2, ans3, ans4, correctAns);
-            crudQuestion.GetComponent<CRUDquestion>().AddNewQuestion("world1", chapterString, dropValue, uploadQuestion);
+            crudQuestion.AddNewQuestion(QuestionData.world, chapterString, dropValue, uploadQuestion);
             setText();
         }
         else if (comp2 == true)
         {
             UploadQuestion uploadQuestion = new UploadQuestion(question, ans1, ans2, ans3, ans4, correctAns);
-            crudQuestion.GetComponent<CRUDquestion>().AddNewQuestion("world1", chapterString, dropValue, uploadQuestion);
+            crudQuestion.AddNewQuestion(QuestionData.world, chapterString, dropValue, uploadQuestion);
             setText();
         }
         else if(comp3 == true)
         {
             UploadQuestion uploadQuestion = new UploadQuestion(question, ans1, ans2, ans3, ans4, correctAns);
-            crudQuestion.GetComponent<CRUDquestion>().AddNewQuestion("world1", chapterString, dropValue, uploadQuestion);
+            crudQuestion.AddNewQuestion(QuestionData.world, chapterString, dropValue, uploadQuestion);
             setText();
         }
         else if(comp4 == true)
         {
             UploadQuestion uploadQuestion = new UploadQuestion(question, ans1, ans2, ans3, ans4, correctAns);
-            crudQuestion.GetComponent<CRUDquestion>().AddNewQuestion("world1", chapterString, dropValue, uploadQuestion);
+            crudQuestion.AddNewQuestion(QuestionData.world, chapterString, dropValue, uploadQuestion);
             setText();
         }
         else {
@@ -91,5 +98,6 @@ public class CreateNewQuestion : MonoBehaviour
     public void setText() {
         infoText.GetComponent<Text>().color = Color.white;
         infoText.GetComponent<Text>().text = "Question successfully created";
+        infoText.SetActive(true);
     }
 }

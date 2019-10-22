@@ -24,6 +24,7 @@ public class StaticVariable : MonoBehaviour
     public static string world;
     public static string chapter;
     public static string difficulty;
+    public static string id;
     public static int game;
 
 }

@@ -6,9 +6,10 @@ public class GetQuestion
 
     public GetQuestion()
     {
+        
     }
 
-    public void uploadQuestion(string question, string ans1, string ans2, string ans3, string ans4, string correctAns)
+    public void uploadQuestion(string question, string ans1, string ans2, string ans3, string ans4, string correctAns, string UniqueKey)
     {
         this.question.question = question;
         this.question.ans1 = ans1;
@@ -16,5 +17,6 @@ public class GetQuestion
         this.question.ans3 = ans3;
         this.question.ans4 = ans4;
         this.question.correctAns = correctAns;
+        this.UniqueKey = UniqueKey;
     }
 }
