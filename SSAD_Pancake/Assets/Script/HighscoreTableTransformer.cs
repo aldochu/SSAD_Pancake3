@@ -38,6 +38,8 @@ public class HighscoreTableTransformer : MonoBehaviour {
 
         string name = highscoreEntry.name;
         entryTransform.Find("nameText").GetComponent<Text>().text = name;
+
+        entryTransform.Find("PortableAvatar").gameObject.SetActive(true);
     }
 
     private void CreateHighscoreEntryTransform(LeaderboardController.HighscoreEntry highscoreEntry, Transform container, List<Transform> transformList) {
@@ -127,6 +129,7 @@ public class HighscoreTableTransformer : MonoBehaviour {
         // Set background visible odds and evens, easier to read
         entryTransform.Find("background").gameObject.SetActive(rank % 2 == 1);
         
+        entryTransform.Find("PortableAvatar").gameObject.SetActive(false);
         // Highlight First
         if (rank == 1) {
             entryTransform.Find("posText").GetComponent<Text>().color = Color.green;

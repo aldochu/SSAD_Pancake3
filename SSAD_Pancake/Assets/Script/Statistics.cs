@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CodeMonkey.Utils;
+using System;
 
 public class Statistics : MonoBehaviour
 {
@@ -51,29 +52,29 @@ public class Statistics : MonoBehaviour
     void Update(){
         double tmpPR;
         dbClass.passingRateDict.TryGetValue("chap1easy",out tmpPR);
-        easyPRchap1.text = tmpPR.ToString();
+        easyPRchap1.text = Math.Round(tmpPR,2).ToString();
         dbClass.passingRateDict.TryGetValue("chap2easy",out tmpPR);
-        easyPRchap2.text = tmpPR.ToString();
+        easyPRchap2.text = Math.Round(tmpPR,2).ToString();
         dbClass.passingRateDict.TryGetValue("chap3easy",out tmpPR);
-        easyPRchap3.text = tmpPR.ToString();
+        easyPRchap3.text = Math.Round(tmpPR,2).ToString();
         dbClass.passingRateDict.TryGetValue("chap4easy",out tmpPR);
-        easyPRchap4.text = tmpPR.ToString(); 
+        easyPRchap4.text = Math.Round(tmpPR,2).ToString(); 
         dbClass.passingRateDict.TryGetValue("chap1mid",out tmpPR);
-        midPRchap1.text = tmpPR.ToString();
+        midPRchap1.text = Math.Round(tmpPR,2).ToString();
         dbClass.passingRateDict.TryGetValue("chap2mid",out tmpPR);
-        midPRchap2.text = tmpPR.ToString();
+        midPRchap2.text = Math.Round(tmpPR,2).ToString();
         dbClass.passingRateDict.TryGetValue("chap3mid",out tmpPR);
-        midPRchap3.text = tmpPR.ToString();
+        midPRchap3.text = Math.Round(tmpPR,2).ToString();
         dbClass.passingRateDict.TryGetValue("chap4mid",out tmpPR);
-        midPRchap4.text = tmpPR.ToString();
+        midPRchap4.text = Math.Round(tmpPR,2).ToString();
         dbClass.passingRateDict.TryGetValue("chap1hard",out tmpPR);
-        hardPRchap1.text = tmpPR.ToString();
+        hardPRchap1.text = Math.Round(tmpPR,2).ToString();
         dbClass.passingRateDict.TryGetValue("chap2hard",out tmpPR);
-        hardPRchap2.text = tmpPR.ToString();
+        hardPRchap2.text = Math.Round(tmpPR,2).ToString();
         dbClass.passingRateDict.TryGetValue("chap3hard",out tmpPR);
-        hardPRchap3.text = tmpPR.ToString();
+        hardPRchap3.text = Math.Round(tmpPR,2).ToString();
         dbClass.passingRateDict.TryGetValue("chap4hard",out tmpPR);
-        hardPRchap4.text = tmpPR.ToString();  
+        hardPRchap4.text = Math.Round(tmpPR,2).ToString();  
 
         int tmpTA;
         dbClass.totalAttemptDict.TryGetValue("chap1easy",out tmpTA);

@@ -8,10 +8,11 @@ public class LoadAvatar : MonoBehaviour
     public Sprite[] headgearSprite, headSprite, bodySprite;
 
     private string headgearValue, headValue, bodyValue; 
+    public bool isCurrentUser;
     // Start is called before the first frame update
     void Start()
     {
-        if (StaticVariable.UserProfile.avatar.head != null)
+        if (StaticVariable.UserProfile.avatar.head != null && isCurrentUser)
         {
             headgearValue = StaticVariable.UserProfile.avatar.headgear;
             headValue = StaticVariable.UserProfile.avatar.head;
@@ -19,9 +20,10 @@ public class LoadAvatar : MonoBehaviour
         }
         else
         {
-            headgearValue = "0";
-            headValue = "0";
-            bodyValue = "0";
+            System.Random rnd = new System.Random();
+            headgearValue = rnd.Next(10).ToString();
+            headValue = rnd.Next(3).ToString();
+            bodyValue = rnd.Next(7).ToString();
         }
 
         Debug.Log("current static value: " + StaticVariable.UserProfile.avatar.headgear + StaticVariable.UserProfile.avatar.head + StaticVariable.UserProfile.avatar.body);
