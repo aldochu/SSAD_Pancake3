@@ -65,7 +65,7 @@ public class CRUDquestion : MonoBehaviour
             newQuestion.ans4 = (exp * 2 + k + 1).ToString();
             newQuestion.correctAns = (exp * 2 + k).ToString();
 
-            AddNewQuestion(world, "chap1", "easy", newQuestion);
+           /* AddNewQuestion(world, "chap1", "easy", newQuestion);
             AddNewQuestion(world, "chap1", "normal", newQuestion);
             AddNewQuestion(world, "chap1", "hard", newQuestion);
 
@@ -75,7 +75,7 @@ public class CRUDquestion : MonoBehaviour
 
             AddNewQuestion(world, "chap3", "easy", newQuestion);
             AddNewQuestion(world, "chap3", "normal", newQuestion);
-            AddNewQuestion(world, "chap3", "hard", newQuestion);
+            AddNewQuestion(world, "chap3", "hard", newQuestion);*/
 
             AddNewQuestion(world, "chap4", "easy", newQuestion);
             AddNewQuestion(world, "chap4", "normal", newQuestion);
@@ -158,11 +158,6 @@ public class CRUDquestion : MonoBehaviour
                   questionList[index] = new GetQuestion();
                   questionList[index].UniqueKey = s.Key;
                   questionList[index++].question = JsonUtility.FromJson<UploadQuestion>(s.GetRawJsonValue());
-                  
-
-                  //Debug.Log("Key: " + questionList[index - 1].UniqueKey);
-                  //Debug.Log("Question: " + questionList[index - 1].question.question);
-
               }
 
               callback(questionList);
@@ -173,11 +168,8 @@ public class CRUDquestion : MonoBehaviour
     }
   
 
-    public void studentAddNewQuestions(string userid, GetQuestion[] questions,int size)
+    public string studentAddNewQuestions(string userid, GetQuestion[] questions,int size)
     {
-
-        
-
         string UniqueQuestionId = Random.Range(0, 10000).ToString() + System.DateTime.Now.Minute.ToString() + System.DateTime.Now.Second.ToString();
 
         for (int i = 0; i < size; i++)
@@ -185,6 +177,8 @@ public class CRUDquestion : MonoBehaviour
             string json = JsonUtility.ToJson(questions[i].question);
             mDatabaseRef.Child("studentGame").Child(userid).Child(UniqueQuestionId).Child("question").Child(questions[i].UniqueKey).SetRawJsonValueAsync(json);
         }
+
+        return UniqueQuestionId;
     }
 
 
@@ -259,13 +253,13 @@ public class CRUDquestion : MonoBehaviour
                               questionList[index] = new GetQuestion();
                               questionList[index].UniqueKey = sss.Key;
                               questionList[index++].question = JsonUtility.FromJson<UploadQuestion>(sss.GetRawJsonValue());
-                              //Debug.Log("Question: " + questionList[index - 1].question.question);
+                              Debug.Log("Question: " + questionList[index - 1].question.question);
                           }
                           break;
                           
                       }
 
-                      //Debug.Log("Question: " + questionList[index - 1].question.question);
+                      Debug.Log("Question: " + questionList[index - 1].question.question);
                   }
 
               }

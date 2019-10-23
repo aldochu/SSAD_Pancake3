@@ -7,15 +7,11 @@ using Firebase.Unity.Editor;
 using Firebase.Database;
 using UnityEngine.SceneManagement;
 
-public class QuestionSpawner : MonoBehaviour
+public class PlayerQuestionSpawner : MonoBehaviour
 {
-    
     public AudioSource point;
     public AudioSource fail;
     int NumQuestions;
-    public string world = StaticVariable.world;
-    public string chap = StaticVariable.chapter;
-    public string difficulty = StaticVariable.difficulty;
     public Text question;
     public Text answer1;
     public Text answer2;
@@ -37,10 +33,12 @@ public class QuestionSpawner : MonoBehaviour
     bool call = false;
     int character;
     CRUDScores crudscore;
-
+    CRUDquestion crudquestion;
+    GetQuestion[] questionList;
     /* Change this */
     string userID = StaticVariable.UserID;//"userid1159";
-
+    string gameID = StaticVariable.gameID;//"userid1159";
+    string ownerID = StaticVariable.ownerID;//"userid1159";
 
     // Start is called before the first frame update
     IEnumerator Start()
@@ -49,18 +47,17 @@ public class QuestionSpawner : MonoBehaviour
         setCharacterMovement(character, false);
         Time.timeScale = 0;
         crudscore = GetComponent<CRUDScores>();
-        crudscore.getUserScore(world, chap, difficulty, userID, callbackFunc);
-        yield return new WaitUntil(() => call==true);
-  
-       // Debug.Log(scoreList.scores);
+        crudquestion = GetComponent<CRUDquestion>();
+        crudscore.getUserScoreForStudentGame(ownerID, userID, gameID, callbackFunc);
+        yield return new WaitUntil(() => call == true);
         // Set this before calling into the realtime database.
-       // FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://ssadpancake.firebaseio.com/");
+        // FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://ssadpancake.firebaseio.com/");
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://ssad-c9270.firebaseio.com/");
         // Get the root reference location of the database.
         mDatabaseRef = FirebaseDatabase.DefaultInstance.RootReference;
         Score.text = "0";
         // point = GetComponent<AudioSource>();
-        
+
         coroutine = GenerateQuestions();
         StartCoroutine(coroutine);
     }
@@ -76,7 +73,7 @@ public class QuestionSpawner : MonoBehaviour
         hero2fall.SetActive(false);
         hero3.SetActive(false);
         hero3fall.SetActive(false);
-        if (heroNumber==1)
+        if (heroNumber == 1)
         {
             if (falldown)
             {
@@ -88,9 +85,9 @@ public class QuestionSpawner : MonoBehaviour
                 hero1.SetActive(true);
                 hero1fall.SetActive(false);
             }
-            
+
         }
-        else if (heroNumber== 2)
+        else if (heroNumber == 2)
         {
             if (falldown)
             {
@@ -122,14 +119,6 @@ public class QuestionSpawner : MonoBehaviour
     {
         startButton.SetActive(false);
         Time.timeScale = 1;
-        if (difficulty == "normal")
-        {
-            Time.timeScale = 1.1f;
-        }
-        if (difficulty == "hard")
-        {
-            Time.timeScale = 1.3f;
-        }
     }
     public void playerMoveQn1()
     {
@@ -202,7 +191,7 @@ public class QuestionSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     bool CheckIfQuestionInArray(int question, int[] array)
     {
@@ -215,41 +204,29 @@ public class QuestionSpawner : MonoBehaviour
         }
         return false;
     }
-    
-    
+
+
     public void callbackFunc(StudentScores scList)
     {
         scoreList = scList;
         call = true;
     }
+
+    public void callbackFunc2(GetQuestion[] scList, string userID)
+    {
+        questionList = scList;
+        call = true;
+    }
     IEnumerator GenerateQuestions()
     {
-        var getTask = FirebaseDatabase.DefaultInstance
-      .GetReference("question").Child(world).Child(chap).Child(difficulty)
-      .GetValueAsync();
+        call = false;
+        crudquestion.getStudentGameQuestion(gameID, callbackFunc2);
 
-        yield return new WaitUntil(() => getTask.IsCompleted || getTask.IsFaulted);
+        yield return new WaitUntil(() => call==true);
+       
 
-        DataSnapshot snapshot = null;
-        if (getTask.IsCompleted)
-        {
-            snapshot = getTask.Result;
-        }
-
-        if (difficulty=="easy")
-        {
-            NumQuestions = 10;
-        }
-        else if (difficulty=="normal")
-        {
-            NumQuestions = 15;
-        }
-        else
-        {
-            NumQuestions = 20;
-        }
-
-        int totalQuestion = int.Parse(snapshot.ChildrenCount.ToString());
+        int totalQuestion = questionList.Length;
+        NumQuestions = totalQuestion;
         if (NumQuestions > totalQuestion) //If not enough questions from the database
         {
             question.text = "The lecturer has not set enough question for this chapter.";
@@ -257,68 +234,42 @@ public class QuestionSpawner : MonoBehaviour
         }
         else
         {
-            GetQuestion[] questionList = new GetQuestion[snapshot.ChildrenCount];
-            int index = 0;
-            //Get question list
-            foreach (DataSnapshot s in snapshot.Children)
-            {
-                questionList[index] = new GetQuestion();
-                questionList[index].UniqueKey = s.Key;
-                questionList[index++].question = JsonUtility.FromJson<UploadQuestion>(s.GetRawJsonValue());
-            }
-
-            GetQuestion[] randomQuestion = new GetQuestion[NumQuestions];
-            for (int i = 0; i < NumQuestions; i++)
-            {
-                randomQuestion[i] = questionList[i];
-                while (randomQuestion[i] == null)
-                {
-                    int random = Random.Range(0, NumQuestions - 1);
-                    if (questionList[random] != null)
-                    {
-                        randomQuestion[i] = questionList[random];
-                        questionList[random] = null;
-                    }
-                }
-            }
-
-
             int rightOption = 0;
             for (int i = 0; i < NumQuestions; i++)
             {
-                
-                question.text = randomQuestion[i].question.question;
+
+                question.text = questionList[i].question.question;
                 int random = Random.Range(1, 4);
                 if (random == 1)
                 {
-                    answer1.text = randomQuestion[i].question.ans1;
-                    answer2.text = randomQuestion[i].question.ans2;
-                    answer3.text = randomQuestion[i].question.ans3;
-                    answer4.text = randomQuestion[i].question.ans4;
+                    answer1.text = questionList[i].question.ans1;
+                    answer2.text = questionList[i].question.ans2;
+                    answer3.text = questionList[i].question.ans3;
+                    answer4.text = questionList[i].question.ans4;
                 }
                 else if (random == 2)
                 {
-                    answer1.text = randomQuestion[i].question.ans2;
-                    answer2.text = randomQuestion[i].question.ans3;
-                    answer3.text = randomQuestion[i].question.ans1;
-                    answer4.text = randomQuestion[i].question.ans4;
+                    answer1.text = questionList[i].question.ans2;
+                    answer2.text = questionList[i].question.ans3;
+                    answer3.text = questionList[i].question.ans1;
+                    answer4.text = questionList[i].question.ans4;
                 }
                 else if (random == 3)
                 {
-                    answer1.text = randomQuestion[i].question.ans3;
-                    answer2.text = randomQuestion[i].question.ans2;
-                    answer3.text = randomQuestion[i].question.ans4;
-                    answer4.text = randomQuestion[i].question.ans1;
+                    answer1.text = questionList[i].question.ans3;
+                    answer2.text = questionList[i].question.ans2;
+                    answer3.text = questionList[i].question.ans4;
+                    answer4.text = questionList[i].question.ans1;
                 }
                 else
                 {
-                    answer1.text = randomQuestion[i].question.ans3;
-                    answer2.text = randomQuestion[i].question.ans1;
-                    answer3.text = randomQuestion[i].question.ans4;
-                    answer4.text = randomQuestion[i].question.ans2;
+                    answer1.text = questionList[i].question.ans3;
+                    answer2.text = questionList[i].question.ans1;
+                    answer3.text = questionList[i].question.ans4;
+                    answer4.text = questionList[i].question.ans2;
                 }
 
-                string rightAnswer = randomQuestion[i].question.correctAns;
+                string rightAnswer = questionList[i].question.correctAns;
 
                 if (rightAnswer == answer1.text)
                 {
@@ -342,76 +293,26 @@ public class QuestionSpawner : MonoBehaviour
                     score++;
                     Score.text = score.ToString();
                     point.Play();
-                    // playSound();
                     yield return new WaitForSeconds(1.8f);
                 }
                 else
                 {
                     setCharacterMovement(character, true);
-                    
+
                     fail.Play();
                     yield return new WaitForSeconds(0.6f);
                     setCharacterMovement(character, false);
                     yield return new WaitForSeconds(1.2f);
                 }
-                
+
             }
             // GETTING attempt  from scores
-            
+
             int latestAttempt = 0;
-            /* var task = FirebaseDatabase.DefaultInstance
-      .GetReference("scores").Child(world).Child(chap).Child(difficulty).Child(userID)
-      .GetValueAsync();
 
-             yield return new WaitUntil(() => task.IsCompleted || task.IsFaulted);
-
-
-             if (task.IsFaulted)
-             {
-                 Debug.Log("Failed to connect");
-                 // Handle the error...
-             }
-             else if (task.IsCompleted)
-             {
-
-                 Debug.Log("Code Runs");
-                 snapshot = task.Result;
-
-
-                 index = 0;
-
-                 //currently order is ascending
-                 StudentScores[] scoresList = new StudentScores[snapshot.ChildrenCount];
-
-                 foreach (DataSnapshot s in snapshot.Children)
-                 {
-                     scoresList[index] = new StudentScores();
-                     scoresList[index++] = JsonUtility.FromJson<StudentScores>(s.GetRawJsonValue());
-                 }
-
-                 Debug.Log("Total record found " + snapshot.ChildrenCount);
-
-
-                 foreach (var item in scoresList)
-                 {
-                     if (item != null)
-                     {
-                         //get the student name here
-                         if (item.attempt > latestAttempt)
-                         {
-                             latestAttempt = item.attempt;
-                         }
-
-                         if (item.scores > score)
-                         {
-                             score = item.scores;
-                         }
-                     }
-                 }
-             //}*/
             // To Insert student score into DB
             Debug.Log(scoreList.scores);
-            if (scoreList!=null)
+            if (scoreList != null)
             {
                 if (scoreList.scores > score)
                 {
@@ -420,22 +321,24 @@ public class QuestionSpawner : MonoBehaviour
                 latestAttempt = scoreList.attempt;
             }
 
-            
-            crudscore.getUserScore(world, chap, difficulty, userID, callbackFunc);
+
+           // crudscore.getUserScore(world, chap, difficulty, userID, callbackFunc);
 
 
             StudentScores sc = new StudentScores();
-            
+
             sc.name = "";
-            sc.attempt = latestAttempt+1;
+            sc.attempt = latestAttempt + 1;
             sc.scores = score;
-            crudscore.updateUserScore(world, chap, difficulty, userID, sc);
-            
+            crudscore.AddStudentGameNewScores(ownerID, userID, gameID, sc);
+
             Time.timeScale = 0;
             question.text = "Game Completed! Click back to attempt another game!";
         }
 
     }
-   
+
+
+
 
 }
