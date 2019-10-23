@@ -42,10 +42,7 @@ public class CRUDquestion : MonoBehaviour
         test.UniqueKey = "1114554";
         UpdateQuestionDifficulty("world1", "chap1", "easy","normal",test);
         */
-
-
-        
-        //getStudentGameQuestion("3405934",printStudentGameQuestions);
+        //getStudentGameQuestion("7646248", printStudentGameQuestions);
     }
 
 
@@ -76,6 +73,10 @@ public class CRUDquestion : MonoBehaviour
             AddNewQuestion(world, "chap3", "easy", newQuestion);
             AddNewQuestion(world, "chap3", "normal", newQuestion);
             AddNewQuestion(world, "chap3", "hard", newQuestion);*/
+
+            AddNewQuestion(world, "chap3", "easy", newQuestion);
+            AddNewQuestion(world, "chap3", "normal", newQuestion);
+            AddNewQuestion(world, "chap3", "hard", newQuestion);
 
             AddNewQuestion(world, "chap4", "easy", newQuestion);
             AddNewQuestion(world, "chap4", "normal", newQuestion);
@@ -133,6 +134,7 @@ public class CRUDquestion : MonoBehaviour
         mDatabaseRef.Child("question").Child(world).Child(chap).Child(difficulty).Child(questionID).SetValueAsync(null);
         callback();
     }
+
 
     public void getQuestion(string world, string chap, string difficulty, System.Action<GetQuestion[]> callback)
     {
@@ -234,7 +236,6 @@ public class CRUDquestion : MonoBehaviour
           else if (task.IsCompleted)
           {
               Debug.Log("Code Runs");
-
               DataSnapshot snapshot = task.Result;
 
 
@@ -243,8 +244,10 @@ public class CRUDquestion : MonoBehaviour
               string GameOwneruserid=null;
               foreach (DataSnapshot s in snapshot.Children)
               {
+
                   foreach (DataSnapshot ss in s.Children)
                   {
+
                       if (gameID == ss.Key)
                       {
                           GameOwneruserid = s.Key;
@@ -259,7 +262,7 @@ public class CRUDquestion : MonoBehaviour
                           
                       }
 
-                      Debug.Log("Question: " + questionList[index - 1].question.question);
+                      
                   }
 
               }
