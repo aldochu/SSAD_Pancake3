@@ -33,4 +33,6 @@ public class StaticVariable : MonoBehaviour
     public static int head;
     public static int body;
 
+    public static string lastVisited;
+
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CodeMonkey.Utils;
+using UnityEngine.SceneManagement;
 
 public class LeaderboardController : MonoBehaviour {
 
@@ -10,18 +11,50 @@ public class LeaderboardController : MonoBehaviour {
 
     private string world = "world1";
     private string chapter = "chap1";
-    private string mode = "hard";
+    private string mode = "easy";
     public CRUDScores dbClass;
+    public AddUser addUser;
     public bool gotData = false;
+    public Text userId;
+    public Text userScore;
+    public Text userRank;
+    public Text userIdOnBoard;
     public HighscoreTableTransformer transformer;
+    public string username;
+    public string userscore;
+    public bool gotUserScore = false;
 
     private void Awake() {
+        Debug.Log("Awake:" + SceneManager.GetActiveScene().name);
+        //For Testing only
+        StaticVariable.UserProfile.avatar.headgear ="1";
+        StaticVariable.UserProfile.avatar.head ="1";
+        StaticVariable.UserProfile.avatar.body ="1";
+        StaticVariable.UserID="userid9702";
+
         dbClass.getLeaderBoard(world, chapter, mode, callback);
-        highscores= new List<HighscoreEntry>(12);
-        for (int i = 0; i<12 ;i++){
+        highscores= new List<HighscoreEntry>(11);
+        for (int i = 0; i<11 ;i++){
             highscores.Add(new HighscoreEntry());
         }
-        transformer.ConstructTable(highscores);
+        if (SceneManager.GetActiveScene().name =="NewLB"){
+            transformer.ConstructTableForStudent(highscores);
+        }
+        else{
+            transformer.ConstructTable(highscores);
+        }
+        if (userId != null){
+            userId.text = StaticVariable.UserID;
+            dbClass.getUserScore(world, chapter, mode, StaticVariable.UserID, getUserScoreCallback);
+        }
+    }
+
+    public void getUserScoreCallback(StudentScores myScore, string world, string chap, string difficulty)
+    {
+        Debug.Log("call back executed");
+        username = myScore.name;
+        userscore = myScore.scores.ToString();
+        gotUserScore = true;
     }
 
     public void DropdownValueChanged(Dropdown Dropdown) {
@@ -49,11 +82,16 @@ public class LeaderboardController : MonoBehaviour {
             gotData = false;
             Debug.Log(gotData);
         }
+        if(gotUserScore){
+            userIdOnBoard.text = username;
+            userScore.text = userscore;
+            gotUserScore = false;
+        }
     }
 
-    public void BackToProfMode()
+    public void BackToLastScene()
     {
-        Application.LoadLevel("ProfMode");
+        Application.LoadLevel(StaticVariable.lastVisited);
         
     }
 

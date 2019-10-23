@@ -13,7 +13,9 @@ public class CRUDScores : MonoBehaviour
     public StudentScores[] OrderedScoreList;
     public Dictionary<string, double> passingRateDict;
     public Dictionary<string, int> totalAttemptDict;
-
+    public Dictionary<string, int> highestScoreDict;
+    public Dictionary<string, int> lowestScoreDict;
+    public Dictionary<string, double> averageScoreDict;
     // Start is called before the first frame update
 
     void Awake()
@@ -99,8 +101,8 @@ public class CRUDScores : MonoBehaviour
               DataSnapshot snapshot = task.Result;
 
               
-              OrderedScoreList = new StudentScores[12];
-              for (int i = 0; i < 12; i++)
+              OrderedScoreList = new StudentScores[11];
+              for (int i = 0; i < 11; i++)
               {
                   OrderedScoreList[i] = new StudentScores();
               }
@@ -116,7 +118,7 @@ public class CRUDScores : MonoBehaviour
               }
                 //Debug.Log(index);
             //   StudentScores[] OrderedScoreList = new StudentScores[index];
-              for (int i = 0; i < 12 && i<index; i++)
+              for (int i = 0; i < 11 && i<index; i++)
               {
                   OrderedScoreList[i] = scoresList[index-i-1];
                   //Debug.Log("Score: " + OrderedScoreList[i].name);
@@ -171,6 +173,8 @@ public class CRUDScores : MonoBehaviour
 
     public void getUserScore(string world, string chap, string difficulty, string userid, System.Action<StudentScores,string,string,string> callback)
     {
+
+        Debug.Log(world+chap+difficulty+userid);
         FirebaseDatabase.DefaultInstance
     .GetReference("scores").Child(world).Child(chap).Child(difficulty).Child(userid)
     .GetValueAsync().ContinueWith(task => {
@@ -184,9 +188,11 @@ public class CRUDScores : MonoBehaviour
             DataSnapshot snapshot = task.Result;
 
             StudentScores studentScore = new StudentScores();
-
+            
             studentScore = JsonUtility.FromJson<StudentScores>(snapshot.GetRawJsonValue());
-
+            Debug.Log("here1");
+            Debug.Log(studentScore.scores);
+            Debug.Log("here2");
             //need to check whether it exist in database
             if (studentScore == null)
             {
@@ -262,7 +268,7 @@ public class CRUDScores : MonoBehaviour
 
 
 
-        public void getStatistics(string world)
+    public void getStatistics(string world)
     {
         FirebaseDatabase.DefaultInstance
       .GetReference("scores").Child(world)
@@ -300,6 +306,58 @@ public class CRUDScores : MonoBehaviour
                     Debug.Log(chapter.Key+mode.Key);
                     passingRateDict[chapter.Key+mode.Key] = (double) passCount / (double) totalCount;
                     totalAttemptDict[chapter.Key+mode.Key] = totalAttempt;
+                  }
+                }
+
+              Debug.Log("Code End");
+         }
+      });
+    }
+
+    public void getStatistic2(string world)
+    {
+        FirebaseDatabase.DefaultInstance
+      .GetReference("scores").Child(world)
+      .GetValueAsync().ContinueWith(task =>
+      {
+          if (task.IsFaulted)
+          {
+              Debug.Log("Failed to connect");
+              // Handle the error...
+          }
+          else if (task.IsCompleted)
+          {
+
+              Debug.Log("Code Runs");
+              DataSnapshot snapshot = task.Result;
+              
+              averageScoreDict = new Dictionary<string, double>();
+              highestScoreDict = new Dictionary<string, int>();
+              lowestScoreDict = new Dictionary<string, int>();              
+
+              foreach (DataSnapshot chapter in snapshot.Children)
+              {
+                foreach (DataSnapshot mode in chapter.Children ){
+                    int highestScore = 0;
+                    int lowestScore = 0;
+                    int count = 0;
+                    int totalScore= 0;
+                    foreach (DataSnapshot s in mode.Children ){
+                        Debug.Log(s.Key);
+                        Debug.Log(s.GetRawJsonValue());
+                        int score = System.Convert.ToInt32(s.Child("scores").GetRawJsonValue());
+                        if (score > highestScore){
+                            highestScore = score;
+                        } else if (score < lowestScore || lowestScore == 0){
+                            lowestScore = score;
+                        }
+                        count ++;
+                        totalScore +=score;
+                    }
+                    Debug.Log(chapter.Key+mode.Key);
+                    highestScoreDict[chapter.Key+mode.Key] = highestScore;
+                    lowestScoreDict[chapter.Key+mode.Key] = lowestScore;
+                    averageScoreDict[chapter.Key+mode.Key] =(double) totalScore / (double) count;
                   }
                 }
 

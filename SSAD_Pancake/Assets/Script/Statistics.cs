@@ -106,6 +106,10 @@ public class Statistics : MonoBehaviour
     public void BackToProfMode()
     {
         Application.LoadLevel("ProfMode");
-        
+    }
+    
+    public void ToNextPage()
+    {
+        Application.LoadLevel("Statistics 1"); 
     }
 }
