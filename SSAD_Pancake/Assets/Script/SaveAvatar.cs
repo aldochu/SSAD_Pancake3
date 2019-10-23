@@ -40,5 +40,7 @@ public class SaveAvatar : MonoBehaviour
         StaticVariable.headGear = headGearIndex;
         StaticVariable.head = headIndex;
         StaticVariable.body = bodyIndex;
+
+        
     }
 }
