@@ -16,16 +16,16 @@ public class game : MonoBehaviour
     
     //Chapter 1
     public GameObject chapter1EasyStar, chapter1MediumStar, chapter1HardStar, chapter1Panel;
-    public Button chapter1EasyButton, chapter1MediumButton, chapter1HardButton;
+    public Button chapter1EasyButtonState, chapter1MediumButtonState, chapter1HardButtonState;
     //Chapter 2
     public GameObject chapter2EasyStar, chapter2MediumStar, chapter2HardStar, chapter2Panel;
-    public Button chapter2EasyButton, chapter2MediumButton, chapter2HardButton;
+    public Button chapter2EasyButtonState, chapter2MediumButtonState, chapter2HardButtonState;
     //Chapter 3
     public GameObject chapter3EasyStar, chapter3MediumStar, chapter3HardStar, chapter3Panel;
-    public Button chapter3EasyButton, chapter3MediumButton, chapter3HardButton;
+    public Button chapter3EasyButtonState, chapter3MediumButtonState, chapter3HardButtonState;
     //Chapter 4
     public GameObject chapter4EasyStar, chapter4MediumStar, chapter4HardStar, chapter4Panel;
-    public Button chapter4EasyButton, chapter4MediumButton, chapter4HardButton;
+    public Button chapter4EasyButtonState, chapter4MediumButtonState, chapter4HardButtonState;
 
     public bool gotComplete;
     
@@ -50,11 +50,11 @@ public class game : MonoBehaviour
         if(StaticVariable.game1 == true)
         {
             chapter1Panel.SetActive(true);
-            chapter1EasyButton.interactable = chapter1Easybutton;
+            chapter1EasyButtonState.interactable = chapter1Easybutton;
             chapter1EasyStar.SetActive(chapter1Easystar);
-            chapter1MediumButton.interactable = chapter1Mediumbutton;
+            chapter1MediumButtonState.interactable = chapter1Mediumbutton;
             chapter1MediumStar.SetActive(chapter1Mediumstar);
-            chapter1HardButton.interactable = chapter1Hardbutton;
+            chapter1HardButtonState.interactable = chapter1Hardbutton;
             chapter1HardStar.SetActive(chapter1Hardstar);
 
             /*
@@ -73,11 +73,11 @@ public class game : MonoBehaviour
         if (StaticVariable.game2 == true)
         {
             chapter2Panel.SetActive(true);
-            chapter2EasyButton.interactable = chapter2Easybutton;
+            chapter2EasyButtonState.interactable = chapter2Easybutton;
             chapter2EasyStar.SetActive(chapter2Easystar);
-            chapter2MediumButton.interactable = chapter2Mediumbutton;
+            chapter2MediumButtonState.interactable = chapter2Mediumbutton;
             chapter2MediumStar.SetActive(chapter2Mediumstar);
-            chapter2HardButton.interactable = chapter2Hardbutton;
+            chapter2HardButtonState.interactable = chapter2Hardbutton;
             chapter2HardStar.SetActive(chapter2Hardstar);
 
             /*
@@ -99,11 +99,11 @@ public class game : MonoBehaviour
         if (StaticVariable.game3 == true)
         {
             chapter3Panel.SetActive(true);
-            chapter3EasyButton.interactable = chapter3Easybutton;
+            chapter3EasyButtonState.interactable = chapter3Easybutton;
             chapter3EasyStar.SetActive(chapter3Easystar);
-            chapter3MediumButton.interactable = chapter3Mediumbutton;
+            chapter3MediumButtonState.interactable = chapter3Mediumbutton;
             chapter3MediumStar.SetActive(chapter3Mediumstar);
-            chapter3HardButton.interactable = chapter3Hardbutton;
+            chapter3HardButtonState.interactable = chapter3Hardbutton;
             chapter3HardStar.SetActive(chapter3Hardstar);
             /*
             chapter3EasyButton.interactable = true;
@@ -124,11 +124,11 @@ public class game : MonoBehaviour
         if (StaticVariable.game4 == true)
         {
             chapter4Panel.SetActive(true);
-            chapter4EasyButton.interactable = chapter4Easybutton;
+            chapter4EasyButtonState.interactable = chapter4Easybutton;
             chapter4EasyStar.SetActive(chapter4Easystar);
-            chapter4MediumButton.interactable = chapter4Mediumbutton;
+            chapter4MediumButtonState.interactable = chapter4Mediumbutton;
             chapter4MediumStar.SetActive(chapter4Mediumstar);
-            chapter4HardButton.interactable = chapter4Hardbutton;
+            chapter4HardButtonState.interactable = chapter4Hardbutton;
             chapter4HardStar.SetActive(chapter4Hardstar);
             /*
             chapter4EasyButton.interactable = true;
@@ -231,8 +231,10 @@ public class game : MonoBehaviour
         lockedOrNot();
         var difficultyLevel = new List<string> { "easy", "medium", "hard" };
         var chapterLevel = new List<string> { "chap1", "chap2", "chap3", "chap4" };
-        userid = "userid1159";
-        world = "world1";
+        
+        world = StaticVariable.world;
+        userid = StaticVariable.UserID;
+        
         crudscore = GetComponent<CRUDScores>();
         foreach (string i in chapterLevel)
         {
@@ -310,7 +312,7 @@ public class game : MonoBehaviour
                 case "chap1":
                     if (studentScores.scores > (StaticVariable.easy / 2))//User passed
                     {
-                        Debug.Log("I am here");
+                        
                         chapter1Easybutton = true;
                         chapter1Mediumbutton = true;
                         chapter1Hardbutton = false;

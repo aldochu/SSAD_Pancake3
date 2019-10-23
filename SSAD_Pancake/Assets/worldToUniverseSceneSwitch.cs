@@ -111,4 +111,13 @@ public class worldToUniverseSceneSwitch : MonoBehaviour
         StaticVariable.lastVisited = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("NewLB");
     }
+
+    public void GoToAvatar()
+    {
+        SceneManager.LoadScene("Avatar");
+    }
+    public void GoToCreateLevel()
+    {
+        SceneManager.LoadScene("PlayerGame1");
+    }
 }
