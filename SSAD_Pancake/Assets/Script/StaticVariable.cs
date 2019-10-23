@@ -29,4 +29,8 @@ public class StaticVariable : MonoBehaviour
     public static string gameID;
     public static string ownerID;
 
+    public static int headGear;
+    public static int head;
+    public static int body;
+
 }

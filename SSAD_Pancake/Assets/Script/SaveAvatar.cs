@@ -36,5 +36,9 @@ public class SaveAvatar : MonoBehaviour
         AddUserInterface.updateAvatar("" + headGearIndex,
             "" + headIndex,
             "" + bodyIndex);
+
+        StaticVariable.headGear = headGearIndex;
+        StaticVariable.head = headIndex;
+        StaticVariable.body = bodyIndex;
     }
 }
