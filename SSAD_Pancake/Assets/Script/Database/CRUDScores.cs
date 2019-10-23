@@ -32,7 +32,9 @@ public class CRUDScores : MonoBehaviour
         //RandomlyGenerateScores("world3");
         //RandomlyGenerateStudentGameScores();
         //RandomlyGenerateScores("testworld2");
+        getStudentGameLeaderBoard("45914933", printgetStudentGameLeaderBoard);
     }
+
 
 
     public void RandomlyGenerateScores(string world)
@@ -264,6 +266,88 @@ public class CRUDScores : MonoBehaviour
 
         }
     });
+    }
+
+    public void getStudentGameLeaderBoard(string gameID, System.Action<StudentScores[]> callback)
+    {
+        FirebaseDatabase.DefaultInstance
+      .GetReference("studentGame")
+      .GetValueAsync().ContinueWith(task =>
+      {
+          if (task.IsFaulted)
+          {
+              Debug.Log("Failed to connect");
+              // Handle the error...
+          }
+          else if (task.IsCompleted)
+          {
+
+              Debug.Log("Code Runs");
+              DataSnapshot snapshot = task.Result;
+
+
+
+              int Scoreindex = 0;
+              StudentScores[] scoresList = new StudentScores[100];
+              foreach (DataSnapshot s in snapshot.Children)
+              {
+
+                  foreach (DataSnapshot ss in s.Children)
+                  {
+
+                      if (gameID == ss.Key)
+                      {
+                      
+                          foreach (DataSnapshot sss in ss.Child("scores").Children)
+                          {
+                              
+                              scoresList[Scoreindex] = new StudentScores();
+                              scoresList[Scoreindex++] = JsonUtility.FromJson<StudentScores>(sss.GetRawJsonValue());
+                              //Debug.Log("StudentName: " + scoresList[Scoreindex-1].name + " , Student Score: " + scoresList[Scoreindex-1].scores);
+                          }
+
+                          break;
+
+                      }
+
+
+                  }
+
+              }
+
+
+              OrderedScoreList = new StudentScores[11];
+              for (int i = 0; i < 11; i++)
+              {
+                  OrderedScoreList[i] = new StudentScores();
+              }
+
+              //Debug.Log(index);
+              //   StudentScores[] OrderedScoreList = new StudentScores[index];
+              for (int i = 0; i < 11 && i < Scoreindex; i++)
+              {
+                  OrderedScoreList[i] = scoresList[Scoreindex - i - 1];
+                  //Debug.Log("Score: " + OrderedScoreList[i].name);
+              }
+
+              if (Scoreindex == 0)
+              {
+                  callback(null);
+              }
+              else
+                  callback(OrderedScoreList);
+              //Debug.Log("Code End");
+          }
+      });
+    }
+
+    public void printgetStudentGameLeaderBoard(StudentScores[] OrderedStudentScores)
+    {
+        foreach(StudentScores s in OrderedStudentScores)
+        {
+            if(s.name != null)
+            Debug.Log("StudentName: " + s.name + " , Student Score: " + s.scores);
+        }
     }
 
 
