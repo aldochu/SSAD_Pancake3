@@ -233,8 +233,8 @@ public class game : MonoBehaviour
         var chapterLevel = new List<string> { "chap1", "chap2", "chap3", "chap4" };
         
         world = StaticVariable.world;
-        //userid = StaticVariable.UserID;
-        userid = "userid1159";
+        userid = StaticVariable.UserID;
+        
         crudscore = GetComponent<CRUDScores>();
         foreach (string i in chapterLevel)
         {
