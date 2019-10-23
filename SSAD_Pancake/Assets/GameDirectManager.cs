@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 public class GameDirectManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    int game;
+    int game = StaticVariable.game;
     void Start()
     {
-        game = 1;
+        
     }
 
     public void startGame()
@@ -30,7 +30,22 @@ public class GameDirectManager : MonoBehaviour
         {
             SceneManager.LoadScene("Game4");
         }
+        else if (game == 5)
+        {
+            SceneManager.LoadScene("PlayerGame");
+        }
     }
+
+    public void goBackToWorld()
+    {
+        SceneManager.LoadScene(StaticVariable.world);
+    }
+
+    public void GoToMakeGameScreen()
+    {
+        SceneManager.LoadScene("PlayerCreateGame1");
+    }
+
 
     // Update is called once per frame
     void Update()

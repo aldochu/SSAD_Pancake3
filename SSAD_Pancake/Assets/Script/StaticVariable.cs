@@ -26,5 +26,7 @@ public class StaticVariable : MonoBehaviour
     public static string difficulty;
     public static string id;
     public static int game;
+    public static string gameID;
+    public static string ownerID;
 
 }
