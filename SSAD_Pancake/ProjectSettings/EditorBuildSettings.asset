@@ -59,4 +59,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/World2.unity
     guid: 441fe24ebd0aa49a69d0b02f724dc8f8
+  - enabled: 1
+    path: Assets/Scenes/NewLB.unity
+    guid: 4aa30f18338a74822b4485ebac49413a
+  - enabled: 1
+    path: Assets/Scenes/Statistics 1.unity
+    guid: 167ce455a4c7141f88c0676c3e258e89
   m_configObjects: {}

@@ -108,6 +108,7 @@ public class worldToUniverseSceneSwitch : MonoBehaviour
 
     public void GoToLeaderBoard()
     {
-        SceneManager.LoadScene("Leaderboard");
+        StaticVariable.lastVisited = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene("NewLB");
     }
 }

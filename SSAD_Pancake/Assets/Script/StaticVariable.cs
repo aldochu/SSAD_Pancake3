@@ -27,4 +27,6 @@ public class StaticVariable : MonoBehaviour
     public static string id;
     public static int game;
 
+    public static string lastVisited;
+
 }
