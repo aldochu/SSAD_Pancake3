@@ -88,6 +88,11 @@ public class ModifyChapter : MonoBehaviour
         QuestionData.chapter = "chap" + chapter.ToString();
     }
 
+    public void changeWorld(int world)
+    {
+        QuestionData.world = "world" + world;
+    }
+
     //going a page back
     public void goBack(string sceneName)
     {
