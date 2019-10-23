@@ -38,7 +38,10 @@ public class openGame : MonoBehaviour
         rocketGame.image.alphaHitTestMinimumThreshold = 0.5f;
         castleGame.image.alphaHitTestMinimumThreshold = 0.1f;
 
-        world.text = "CZ2002";
+        if(StaticVariable.world == "world1")
+            world.text = "CZ2002";
+        else if(StaticVariable.world == "world2")
+            world.text = "CZ2003";
 
         volcanoGame.onClick.AddListener(() => newVolcanoTurn());
         volcano.text = "Volcano: " + turn;

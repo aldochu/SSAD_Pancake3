@@ -37,10 +37,13 @@ public class SaveAvatar : MonoBehaviour
             "" + headIndex,
             "" + bodyIndex);
 
-        StaticVariable.headGear = headGearIndex;
-        StaticVariable.head = headIndex;
-        StaticVariable.body = bodyIndex;
+        Debug.Log("Indexes: " + headGearIndex + " " + headIndex + " "+bodyIndex);
 
-        
+        StaticVariable.UserProfile.avatar.headgear = headGearIndex.ToString();
+        StaticVariable.UserProfile.avatar.head = headIndex.ToString();
+        StaticVariable.UserProfile.avatar.body = bodyIndex.ToString();
+
+
+
     }
 }
