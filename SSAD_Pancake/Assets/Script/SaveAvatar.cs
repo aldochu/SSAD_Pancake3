@@ -43,8 +43,7 @@ public class SaveAvatar : MonoBehaviour
         StaticVariable.UserProfile.avatar.head = headIndex.ToString();
         StaticVariable.UserProfile.avatar.body = bodyIndex.ToString();
 
-		Debug.Log("LastVisited: " + StaticVariable.lastVisited);
-
+        
         if(StaticVariable.lastVisited == null)
 		{
 			Application.LoadLevel("Universe");

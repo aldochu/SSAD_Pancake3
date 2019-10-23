@@ -19,12 +19,12 @@ public class LoadAvatar : MonoBehaviour
             bodyValue = StaticVariable.UserProfile.avatar.body;
         }
         else
-        {
-            System.Random rnd = new System.Random();
-            headgearValue = rnd.Next(10).ToString();
-            headValue = rnd.Next(3).ToString();
-            bodyValue = rnd.Next(7).ToString();
-        }
+		{
+			System.Random rnd = new System.Random();
+			headgearValue = rnd.Next(10).ToString();
+			headValue = rnd.Next(3).ToString();
+			bodyValue = rnd.Next(7).ToString();
+		}
 
         Debug.Log("current static value: " + StaticVariable.UserProfile.avatar.headgear + StaticVariable.UserProfile.avatar.head + StaticVariable.UserProfile.avatar.body);
 

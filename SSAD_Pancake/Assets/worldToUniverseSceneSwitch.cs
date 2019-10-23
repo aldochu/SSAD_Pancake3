@@ -15,14 +15,14 @@ public class worldToUniverseSceneSwitch : MonoBehaviour
     public void GotoWorld1Scene()
     {
 		Debug.Log("Executed?" + StaticVariable.lastVisited);
-		StaticVariable.lastVisited = "world1";
+		StaticVariable.lastVisited = "World1";
 		StaticVariable.world = "world1";
         SceneManager.LoadScene("World1");
     }
 
     public void GotoWorld2Scene()
     {
-		StaticVariable.lastVisited = "world2";
+		StaticVariable.lastVisited = "World2";
 		StaticVariable.world = "world2";
         SceneManager.LoadScene("World2");
     }
@@ -119,7 +119,7 @@ public class worldToUniverseSceneSwitch : MonoBehaviour
 
 	public void GoToAvatar()
 	{
-		Debug.Log("why am i here");
+		Debug.Log("why am i here" + StaticVariable.lastVisited);
 		StaticVariable.lastVisited = SceneManager.GetActiveScene().name;
 		SceneManager.LoadScene("Avatar");
 	}
