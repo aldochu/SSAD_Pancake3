@@ -110,4 +110,13 @@ public class worldToUniverseSceneSwitch : MonoBehaviour
     {
         SceneManager.LoadScene("Leaderboard");
     }
+
+    public void GoToAvatar()
+    {
+        SceneManager.LoadScene("Avatar");
+    }
+    public void GoToCreateLevel()
+    {
+        SceneManager.LoadScene("PlayerGame1");
+    }
 }
