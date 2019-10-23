@@ -2686,7 +2686,7 @@ MonoBehaviour:
   errMsg: {fileID: 296244506}
   loginErr: {fileID: 1996389978}
   CAccCanvas: {fileID: 515859835}
-  loadStudentSceneName: Avatar
+  loadStudentSceneName: Universe
   loadProfSceneName: ProfMode
   err: 
   err2: 

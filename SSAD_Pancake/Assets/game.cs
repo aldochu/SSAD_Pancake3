@@ -50,7 +50,7 @@ public class game : MonoBehaviour
         if(StaticVariable.game1 == true)
         {
             chapter1Panel.SetActive(true);
-            chapter1EasyButtonState.interactable = chapter1Easybutton;
+            chapter1EasyButtonState.interactable = true;
             chapter1EasyStar.SetActive(chapter1Easystar);
             chapter1MediumButtonState.interactable = chapter1Mediumbutton;
             chapter1MediumStar.SetActive(chapter1Mediumstar);
@@ -73,7 +73,7 @@ public class game : MonoBehaviour
         if (StaticVariable.game2 == true)
         {
             chapter2Panel.SetActive(true);
-            chapter2EasyButtonState.interactable = chapter2Easybutton;
+            chapter2EasyButtonState.interactable = true;
             chapter2EasyStar.SetActive(chapter2Easystar);
             chapter2MediumButtonState.interactable = chapter2Mediumbutton;
             chapter2MediumStar.SetActive(chapter2Mediumstar);
@@ -99,7 +99,7 @@ public class game : MonoBehaviour
         if (StaticVariable.game3 == true)
         {
             chapter3Panel.SetActive(true);
-            chapter3EasyButtonState.interactable = chapter3Easybutton;
+            chapter3EasyButtonState.interactable = true;
             chapter3EasyStar.SetActive(chapter3Easystar);
             chapter3MediumButtonState.interactable = chapter3Mediumbutton;
             chapter3MediumStar.SetActive(chapter3Mediumstar);
@@ -124,7 +124,7 @@ public class game : MonoBehaviour
         if (StaticVariable.game4 == true)
         {
             chapter4Panel.SetActive(true);
-            chapter4EasyButtonState.interactable = chapter4Easybutton;
+            chapter4EasyButtonState.interactable = true;
             chapter4EasyStar.SetActive(chapter4Easystar);
             chapter4MediumButtonState.interactable = chapter4Mediumbutton;
             chapter4MediumStar.SetActive(chapter4Mediumstar);
