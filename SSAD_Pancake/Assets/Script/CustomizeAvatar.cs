@@ -11,6 +11,8 @@ public class CustomizeAvatar : MonoBehaviour
 
     public int index;
 
+    public string partIndex;
+
     void Start()
     {
         
@@ -34,8 +36,22 @@ public class CustomizeAvatar : MonoBehaviour
 
     public void SetIndex(string index)
     {
-        Debug.Log("setting index  " + index.Replace("\"", string.Empty));
-        this.index = System.Convert.ToInt32(index.Replace("\"", string.Empty));
+        if(partIndex.Equals("HeadGear"))
+        {
+            this.index = System.Convert.ToInt32(StaticVariable.UserProfile.avatar.headgear);
+
+            Debug.Log("HeadGearIndex: " + index);
+        }
+        else if (partIndex.Equals("Head"))
+        {
+            this.index = System.Convert.ToInt32(StaticVariable.UserProfile.avatar.head);
+            Debug.Log("HeadIndex: " + index);
+        }
+        else
+        {
+            this.index = System.Convert.ToInt32(StaticVariable.UserProfile.avatar.body);
+            Debug.Log("BodyIndex: " + index);
+        }
     }
 
 }
