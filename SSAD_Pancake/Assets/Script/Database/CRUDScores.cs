@@ -32,7 +32,7 @@ public class CRUDScores : MonoBehaviour
         //RandomlyGenerateScores("world3");
         //RandomlyGenerateStudentGameScores();
         //RandomlyGenerateScores("testworld2");
-        getStudentGameLeaderBoard("45914933", printgetStudentGameLeaderBoard);
+        //getStudentGameLeaderBoard("45914933", printgetStudentGameLeaderBoard);
     }
 
 
@@ -99,7 +99,7 @@ public class CRUDScores : MonoBehaviour
           else if (task.IsCompleted)
           {
 
-              Debug.Log("Code Runs");
+             // Debug.Log("Code Runs");
               DataSnapshot snapshot = task.Result;
 
               
@@ -192,18 +192,18 @@ public class CRUDScores : MonoBehaviour
             StudentScores studentScore = new StudentScores();
             
             studentScore = JsonUtility.FromJson<StudentScores>(snapshot.GetRawJsonValue());
-            Debug.Log("here1");
-            Debug.Log(studentScore.scores);
-            Debug.Log("here2");
+           // Debug.Log("here1");
+           // Debug.Log(studentScore.scores);
+            //Debug.Log("here2");
             //need to check whether it exist in database
             if (studentScore == null)
             {
-                Debug.Log("it's null");
+               // Debug.Log("it's null");
                 callback(null, null, null, null);
             }
             else
             {
-                Debug.Log("attemp:" + studentScore.attempt + "  , name is: " + studentScore.name + "  , score: " + studentScore.scores);
+               // Debug.Log("attemp:" + studentScore.attempt + "  , name is: " + studentScore.name + "  , score: " + studentScore.scores);
                 callback(studentScore,world,chap,difficulty);
             }
 
@@ -226,7 +226,7 @@ public class CRUDScores : MonoBehaviour
     public void AddStudentGameNewScores(string GameOwneruserid, string userid, string UniqueQuestionId, StudentScores studentscore)
     {
         string json = JsonUtility.ToJson(studentscore);
-        Debug.Log(GameOwneruserid + " " + userid + " " + UniqueQuestionId);
+        //Debug.Log(GameOwneruserid + " " + userid + " " + UniqueQuestionId);
 
 
         mDatabaseRef.Child("studentGame").Child(GameOwneruserid).Child(UniqueQuestionId).Child("scores").Child(userid).SetRawJsonValueAsync(json); ;
@@ -281,7 +281,7 @@ public class CRUDScores : MonoBehaviour
           else if (task.IsCompleted)
           {
 
-              Debug.Log("Code Runs");
+             // Debug.Log("Code Runs");
               DataSnapshot snapshot = task.Result;
 
 

@@ -148,7 +148,7 @@ public class CRUDquestion : MonoBehaviour
           }
           else if (task.IsCompleted)
           {
-              Debug.Log("Code Runs");
+              //Debug.Log("Code Runs");
               
               DataSnapshot snapshot = task.Result;
 
@@ -163,7 +163,7 @@ public class CRUDquestion : MonoBehaviour
               }
 
               callback(questionList);
-              Debug.Log("Code End");
+              //Debug.Log("Code End");
           }
       });
 
@@ -198,7 +198,7 @@ public class CRUDquestion : MonoBehaviour
           }
           else if (task.IsCompleted)
           {
-              Debug.Log("Code Runs");
+              //Debug.Log("Code Runs");
 
               DataSnapshot snapshot = task.Result;
 
@@ -210,13 +210,13 @@ public class CRUDquestion : MonoBehaviour
                   foreach (DataSnapshot ss in s.Children)
                   {
                       gamelists[index++] = ss.Key;
-                      Debug.Log("Key: " + gamelists[index - 1]);
+                      //Debug.Log("Key: " + gamelists[index - 1]);
                       //Debug.Log("Question: " + questionList[index - 1].question.question);
                   }
 
               }
               callback(gamelists);
-              Debug.Log("Code End");
+              //Debug.Log("Code End");
           }
       });
       
@@ -230,12 +230,12 @@ public class CRUDquestion : MonoBehaviour
       {
           if (task.IsFaulted)
           {
-              Debug.Log("Failed to connect");
+              //Debug.Log("Failed to connect");
               // Handle the error...
           }
           else if (task.IsCompleted)
           {
-              Debug.Log("Code Runs");
+              //Debug.Log("Code Runs");
               DataSnapshot snapshot = task.Result;
 
 
@@ -260,7 +260,7 @@ public class CRUDquestion : MonoBehaviour
                               questionList[index] = new GetQuestion();
                               questionList[index].UniqueKey = sss.Key;
                               questionList[index++].question = JsonUtility.FromJson<UploadQuestion>(sss.GetRawJsonValue());
-                              Debug.Log("Question: " + questionList[index - 1].question.question);
+                              //Debug.Log("Question: " + questionList[index - 1].question.question);
                           }
                           break;
                           
@@ -274,7 +274,7 @@ public class CRUDquestion : MonoBehaviour
 
               callback(questionList, GameOwneruserid);
 
-              Debug.Log("Code End");
+              //Debug.Log("Code End");
           }
       });
 
