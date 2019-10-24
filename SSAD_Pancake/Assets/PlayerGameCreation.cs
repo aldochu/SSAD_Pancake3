@@ -140,7 +140,7 @@ public class PlayerGameCreation : MonoBehaviour
             string returnValue = crudqn.studentAddNewQuestions("userid1159", allQuestions, selectedQuestions.Count);
             
             
-            success.text = "GGame ID: '" + returnValue + "'.";
+            success.text = "Game ID: '" + returnValue + "'.";
             
         }
     }
