@@ -68,4 +68,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Statistics 1.unity
     guid: 167ce455a4c7141f88c0676c3e258e89
+  - enabled: 1
+    path: Assets/Scenes/PlayerCreateGame1.unity
+    guid: 7a494f2ccbbcf0d4aa135456a0adfb25
+  - enabled: 1
+    path: Assets/Scenes/PlayerGame.unity
+    guid: 1bb0c35766ab06e4aaee4f86333b0b97
+  - enabled: 1
+    path: Assets/Scenes/PlayerGame1.unity
+    guid: 8cc30ecfbd3758e498d850e5c0dc09e0
   m_configObjects: {}
