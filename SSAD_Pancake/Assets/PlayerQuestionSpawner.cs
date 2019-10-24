@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerQuestionSpawner : MonoBehaviour
 {
+    public GameObject shareButton;
     public AudioSource point;
     public AudioSource fail;
     int NumQuestions;
@@ -44,6 +45,7 @@ public class PlayerQuestionSpawner : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
+        shareButton.SetActive(false);
         character = StaticVariable.characterSelect;
         setCharacterMovement(character, false);
         Time.timeScale = 0;
@@ -335,6 +337,8 @@ public class PlayerQuestionSpawner : MonoBehaviour
 
             Time.timeScale = 0;
             question.text = "Game Completed! Click back to attempt another game!";
+
+            shareButton.SetActive(true);
         }
 
     }

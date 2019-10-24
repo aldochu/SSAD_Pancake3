@@ -478,6 +478,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0bf9c2f32b651e45a4ee0312e05c29f, type: 3}
+--- !u!224 &525266609 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 9013331126651924699, guid: c0bf9c2f32b651e45a4ee0312e05c29f,
+    type: 3}
+  m_PrefabInstance: {fileID: 525266608}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &533536990 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1937615243644207168, guid: c0bf9c2f32b651e45a4ee0312e05c29f,
@@ -825,6 +831,96 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5394199653196929881, guid: 0a8ce7f7b7b9c864bbc040e15f3eb161,
     type: 3}
   m_PrefabInstance: {fileID: 1208976890}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1318972212
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 525266609}
+    m_Modifications:
+    - target: {fileID: 5584425181281427648, guid: b3e1369b4cc602844bd6adc8940790d4,
+        type: 3}
+      propertyPath: m_Name
+      value: ShareButton1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584425181281427652, guid: b3e1369b4cc602844bd6adc8940790d4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5849.0317
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584425181281427652, guid: b3e1369b4cc602844bd6adc8940790d4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4859.0215
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584425181281427652, guid: b3e1369b4cc602844bd6adc8940790d4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584425181281427652, guid: b3e1369b4cc602844bd6adc8940790d4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584425181281427652, guid: b3e1369b4cc602844bd6adc8940790d4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584425181281427652, guid: b3e1369b4cc602844bd6adc8940790d4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584425181281427652, guid: b3e1369b4cc602844bd6adc8940790d4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584425181281427652, guid: b3e1369b4cc602844bd6adc8940790d4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584425181281427652, guid: b3e1369b4cc602844bd6adc8940790d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584425181281427652, guid: b3e1369b4cc602844bd6adc8940790d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584425181281427652, guid: b3e1369b4cc602844bd6adc8940790d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584425181281427652, guid: b3e1369b4cc602844bd6adc8940790d4,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 314.93835
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584425181281427652, guid: b3e1369b4cc602844bd6adc8940790d4,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 314.93835
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584425181281427652, guid: b3e1369b4cc602844bd6adc8940790d4,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 314.93835
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b3e1369b4cc602844bd6adc8940790d4, type: 3}
+--- !u!1 &1318972213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1065213587531782603, guid: b3e1369b4cc602844bd6adc8940790d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1318972212}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1326635385
 GameObject:
@@ -1320,6 +1416,11 @@ PrefabInstance:
       propertyPath: hero3fall
       value: 
       objectReference: {fileID: 744193636}
+    - target: {fileID: 2729748872905609305, guid: 4a85734474ba54040b896994d9847b9b,
+        type: 3}
+      propertyPath: shareButton
+      value: 
+      objectReference: {fileID: 1318972213}
     - target: {fileID: 2729748872905609306, guid: 4a85734474ba54040b896994d9847b9b,
         type: 3}
       propertyPath: m_LocalPosition.x
