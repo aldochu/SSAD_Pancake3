@@ -19,7 +19,7 @@ public class PlayerGameCreation : MonoBehaviour
     bool callback = false;
     string[] idList = null;
     static string[] worlds = { "world1", "world2" };
-    static string[] chapters = { "chap1", "chap2", /*"chap3", */"chap4" };
+    static string[] chapters = { "chap1", "chap2", "chap3", "chap4" };
     static string[] difficulty = { "easy", "normal", "hard" };
     List<GetQuestion>[][][] fullArray;
     GetQuestion[] array;

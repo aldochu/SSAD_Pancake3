@@ -267,7 +267,7 @@ public class QuestionSpawner : MonoBehaviour
                 questionList[index++].question = JsonUtility.FromJson<UploadQuestion>(s.GetRawJsonValue());
             }
 
-            GetQuestion[] randomQuestion = questionList;/*new GetQuestion[NumQuestions];
+            GetQuestion[] randomQuestion = new GetQuestion[NumQuestions];
             for (int i = 0; i < NumQuestions; i++)
             {
                 randomQuestion[i] = questionList[i];
@@ -280,7 +280,7 @@ public class QuestionSpawner : MonoBehaviour
                         questionList[random] = null;
                     }
                 }
-            }*/
+            }
 
 
             int rightOption = 0;
@@ -410,6 +410,7 @@ public class QuestionSpawner : MonoBehaviour
                  }
              //}*/
             // To Insert student score into DB
+            Debug.Log(scoreList.scores);
             if (scoreList!=null)
             {
                 if (scoreList.scores > score)

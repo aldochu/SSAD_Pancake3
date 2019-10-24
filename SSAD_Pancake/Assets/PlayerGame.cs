@@ -22,10 +22,22 @@ public class PlayerGame : MonoBehaviour
 
     public void checkGame()
     {
-        string gameID = textbox.text;
-        couroutine = checkGameID(gameID);
+        
+        couroutine = checkGameID();
         StartCoroutine(couroutine);
-        if (userID==null)
+
+
+
+    }
+
+    IEnumerator checkGameID()
+    {
+        string gameID = textbox.text;
+        crudqn.getStudentGameQuestion(gameID, callbackFunc);
+        yield return new WaitUntil(() => callback == true);
+
+
+        if (userID == null)
         {
             error.text = "Invalid Game ID";
             error.enabled = true;
@@ -37,14 +49,6 @@ public class PlayerGame : MonoBehaviour
             StaticVariable.game = 5;
             SceneManager.LoadScene("CharacterSelection");
         }
-
-
-    }
-
-    IEnumerator checkGameID(string gameID)
-    {
-        crudqn.getStudentGameQuestion(gameID, callbackFunc);
-        yield return new WaitUntil(() => callback == true);
     }
 
     public void callbackFunc(GetQuestion[] IdList, string UserID)
