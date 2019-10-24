@@ -45,6 +45,11 @@ public class GameDirectManager : MonoBehaviour
         SceneManager.LoadScene(StaticVariable.world);
     }
 
+    public void goBackToUniverse()
+    {
+        SceneManager.LoadScene("Universe");
+    }
+
     public void GoToMakeGameScreen()
     {
         SceneManager.LoadScene("PlayerCreateGame1");
