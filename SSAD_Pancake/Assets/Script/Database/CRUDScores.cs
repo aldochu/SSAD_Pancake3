@@ -225,9 +225,8 @@ public class CRUDScores : MonoBehaviour
 
     public void AddStudentGameNewScores(string GameOwneruserid, string userid, string UniqueQuestionId, StudentScores studentscore)
     {
-
-
         string json = JsonUtility.ToJson(studentscore);
+        Debug.Log(GameOwneruserid + " " + userid + " " + UniqueQuestionId);
 
 
         mDatabaseRef.Child("studentGame").Child(GameOwneruserid).Child(UniqueQuestionId).Child("scores").Child(userid).SetRawJsonValueAsync(json); ;

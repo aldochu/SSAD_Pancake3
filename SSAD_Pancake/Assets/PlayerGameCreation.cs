@@ -7,6 +7,7 @@ public class PlayerGameCreation : MonoBehaviour
 {
     // Start is called before the first frame update
     public Text errorList;
+    public Text loading;
     public Text success;
     public Canvas view;
     public Canvas successCanvas;
@@ -27,7 +28,9 @@ public class PlayerGameCreation : MonoBehaviour
     private IEnumerator coroutine;
     IEnumerator Start()
     {
+        view.enabled = false;
         successCanvas.enabled = false;
+        loading.enabled = true;
         errorList.enabled = false;
         crudqn = GetComponent<CRUDquestion>();
         worldList.options.Clear();
@@ -83,6 +86,8 @@ public class PlayerGameCreation : MonoBehaviour
             }
 
         }
+        loading.enabled = false;
+        view.enabled = true;
         callback = false;
 
         updateQuestion();

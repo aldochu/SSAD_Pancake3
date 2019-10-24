@@ -253,6 +253,10 @@ public class CRUDquestion : MonoBehaviour
                           GameOwneruserid = s.Key;
                           foreach (DataSnapshot sss in ss.Child("question").Children)
                           {
+                              if (index > 9)
+                              {
+                                  break;
+                              }
                               questionList[index] = new GetQuestion();
                               questionList[index].UniqueKey = sss.Key;
                               questionList[index++].question = JsonUtility.FromJson<UploadQuestion>(sss.GetRawJsonValue());

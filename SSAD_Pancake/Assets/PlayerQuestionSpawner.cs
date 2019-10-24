@@ -35,10 +35,11 @@ public class PlayerQuestionSpawner : MonoBehaviour
     CRUDScores crudscore;
     CRUDquestion crudquestion;
     GetQuestion[] questionList;
-    /* Change this */
+
     string userID = StaticVariable.UserID;//"userid1159";
     string gameID = StaticVariable.gameID;//"userid1159";
     string ownerID = StaticVariable.ownerID;//"userid1159";
+    
 
     // Start is called before the first frame update
     IEnumerator Start()
@@ -226,10 +227,10 @@ public class PlayerQuestionSpawner : MonoBehaviour
        
 
         int totalQuestion = questionList.Length;
-        NumQuestions = totalQuestion;
+        NumQuestions = 10;
         if (NumQuestions > totalQuestion) //If not enough questions from the database
         {
-            question.text = "The lecturer has not set enough question for this chapter.";
+            question.text = "Not enough question set for this chapter.";
             Time.timeScale = 0;
         }
         else
@@ -290,6 +291,7 @@ public class PlayerQuestionSpawner : MonoBehaviour
                 yield return new WaitForSeconds(4.2f);
                 if (rightOption == userChoice)
                 {
+                    Debug.Log("Correct.");
                     score++;
                     Score.text = score.ToString();
                     point.Play();
@@ -297,6 +299,7 @@ public class PlayerQuestionSpawner : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log("Wrong. Right Option " + rightOption);
                     setCharacterMovement(character, true);
 
                     fail.Play();
@@ -304,6 +307,7 @@ public class PlayerQuestionSpawner : MonoBehaviour
                     setCharacterMovement(character, false);
                     yield return new WaitForSeconds(1.2f);
                 }
+                Debug.Log("Total Marks " + score);
 
             }
             // GETTING attempt  from scores
@@ -311,19 +315,16 @@ public class PlayerQuestionSpawner : MonoBehaviour
             int latestAttempt = 0;
 
             // To Insert student score into DB
-            Debug.Log(scoreList.scores);
+            //
             if (scoreList != null)
             {
+                Debug.Log(scoreList.scores);
                 if (scoreList.scores > score)
                 {
                     score = scoreList.scores;
                 }
                 latestAttempt = scoreList.attempt;
             }
-
-
-           // crudscore.getUserScore(world, chap, difficulty, userID, callbackFunc);
-
 
             StudentScores sc = new StudentScores();
 

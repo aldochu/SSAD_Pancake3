@@ -47,6 +47,7 @@ public class PlayerGame : MonoBehaviour
             StaticVariable.gameID = gameID;
             StaticVariable.ownerID = userID;
             StaticVariable.game = 5;
+            StaticVariable.world = "Universe";
             SceneManager.LoadScene("CharacterSelection");
         }
     }
