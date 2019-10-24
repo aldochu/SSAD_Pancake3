@@ -4,7 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class worldToUniverseSceneSwitch : MonoBehaviour
 {
-
+    public void GoToLogOut()
+    {
+        StaticVariable.UserID = null;
+        StaticVariable.UserProfile = null;
+        SceneManager.LoadScene("Login");
+    }
     public void GotoUniverseScene()
     {
 		StaticVariable.lastVisited = "Universe";
