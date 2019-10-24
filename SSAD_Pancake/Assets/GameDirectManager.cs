@@ -36,6 +36,10 @@ public class GameDirectManager : MonoBehaviour
         }
     }
 
+    public void goToCustomGame()
+    {
+        SceneManager.LoadScene("PlayerGame1");
+    }
     public void goBackToWorld()
     {
         SceneManager.LoadScene(StaticVariable.world);
