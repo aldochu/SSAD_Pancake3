@@ -57,42 +57,53 @@ public class CreateNewQuestion : MonoBehaviour
         bool comp3 = correctAns.Equals(ans3);
         bool comp4 = correctAns.Equals(ans4);
 
-        Debug.Log(QuestionData.world);
-        Debug.Log(chapterString);
-        Debug.Log(question);
-        Debug.Log(ans1);
-        Debug.Log(ans2);
-        Debug.Log(correctAns);
-        Debug.Log(dropValue);
+        bool emptyInputQ = question.Equals("");
+		bool emptyInputA1 = ans1.Equals("");
+		bool emptyInputA2 = ans2.Equals("");
+		bool emptyInputA3 = ans3.Equals("");
+		bool emptyInputA4 = ans4.Equals("");
+		bool emptyInputCA = correctAns.Equals("");
 
-        
-        if (comp1 == true)
-        {
-            UploadQuestion uploadQuestion = new UploadQuestion(question, ans1, ans2, ans3, ans4, correctAns);
-            crudQuestion.AddNewQuestion(QuestionData.world, chapterString, dropValue, uploadQuestion);
-            setText();
-        }
-        else if (comp2 == true)
-        {
-            UploadQuestion uploadQuestion = new UploadQuestion(question, ans1, ans2, ans3, ans4, correctAns);
-            crudQuestion.AddNewQuestion(QuestionData.world, chapterString, dropValue, uploadQuestion);
-            setText();
-        }
-        else if(comp3 == true)
-        {
-            UploadQuestion uploadQuestion = new UploadQuestion(question, ans1, ans2, ans3, ans4, correctAns);
-            crudQuestion.AddNewQuestion(QuestionData.world, chapterString, dropValue, uploadQuestion);
-            setText();
-        }
-        else if(comp4 == true)
-        {
-            UploadQuestion uploadQuestion = new UploadQuestion(question, ans1, ans2, ans3, ans4, correctAns);
-            crudQuestion.AddNewQuestion(QuestionData.world, chapterString, dropValue, uploadQuestion);
-            setText();
-        }
-        else {
-            infoText.SetActive(true);
-        }
+		
+		if (emptyInputQ | emptyInputA1 | emptyInputA2 | emptyInputA3 | emptyInputA4 | emptyInputCA)
+		{
+			Debug.Log("No Input given");
+			setEmptyText();
+		}
+		else
+		{
+
+			if (comp1 == true)
+			{
+				UploadQuestion uploadQuestion = new UploadQuestion(question, ans1, ans2, ans3, ans4, correctAns);
+				crudQuestion.AddNewQuestion(QuestionData.world, chapterString, dropValue, uploadQuestion);
+				setText();
+				
+			}
+			else if (comp2 == true)
+			{
+				UploadQuestion uploadQuestion = new UploadQuestion(question, ans1, ans2, ans3, ans4, correctAns);
+				crudQuestion.AddNewQuestion(QuestionData.world, chapterString, dropValue, uploadQuestion);
+				setText();
+			}
+			else if (comp3 == true)
+			{
+				UploadQuestion uploadQuestion = new UploadQuestion(question, ans1, ans2, ans3, ans4, correctAns);
+				crudQuestion.AddNewQuestion(QuestionData.world, chapterString, dropValue, uploadQuestion);
+				setText();
+			}
+			else if (comp4 == true)
+			{
+				UploadQuestion uploadQuestion = new UploadQuestion(question, ans1, ans2, ans3, ans4, correctAns);
+				crudQuestion.AddNewQuestion(QuestionData.world, chapterString, dropValue, uploadQuestion);
+				setText();
+			}
+			else
+			{
+				setIncorrectText();
+			}
+            
+		}
     }
 
     public void setText() {
@@ -100,4 +111,18 @@ public class CreateNewQuestion : MonoBehaviour
         infoText.GetComponent<Text>().text = "Question successfully created";
         infoText.SetActive(true);
     }
+
+	public void setEmptyText()
+	{
+		infoText.GetComponent<Text>().color = Color.red;
+		infoText.GetComponent<Text>().text = "Please fill out every field";
+		infoText.SetActive(true);
+	}
+
+    public void setIncorrectText()
+	{
+		infoText.GetComponent<Text>().color = Color.red;
+		infoText.GetComponent<Text>().text = "Correct answer differs from answers 1 to 4";
+		infoText.SetActive(true);
+	}
 }

@@ -112,8 +112,21 @@ public class ModifyChapter : MonoBehaviour
         infoText.SetActive(true);
     }
 
-    // gets current value of input fields and updates the database (either just the questions or also the difficulty)
-    public void updateQuestion()
+	public void setEmptyText()
+	{
+		infoText.GetComponent<Text>().color = Color.red;
+		infoText.GetComponent<Text>().text = "Please fill out every field";
+		infoText.SetActive(true);
+	}
+
+	public void setIncorrectText()
+	{
+		infoText.GetComponent<Text>().color = Color.red;
+		infoText.GetComponent<Text>().text = "Correct answer differs from answers 1 to 4";
+	}
+
+		// gets current value of input fields and updates the database (either just the questions or also the difficulty)
+		public void updateQuestion()
     {
         question = GameObject.Find("InputQuestion").GetComponent<InputField>();
         a1 = GameObject.Find("InputAnswer1").GetComponent<InputField>();
@@ -137,87 +150,94 @@ public class ModifyChapter : MonoBehaviour
         bool comp3 = correctA.Equals(ans3);
         bool comp4 = correctA.Equals(ans4);
 
-        Debug.Log("Question: " + q);
-        Debug.Log("ans1 : " + ans1);
-        Debug.Log("ans2 : " + ans2);
-        Debug.Log("ans3 : " + ans3);
-        Debug.Log("ans4 : " + ans4);
-        Debug.Log("correctA : " + correctA);
-        Debug.Log("Difficulty: " + dropValueafter);
-        Debug.Log("ID: " + StaticVariable.id);
+		bool emptyInputQ = question.Equals("");
+		bool emptyInputA1 = ans1.Equals("");
+		bool emptyInputA2 = ans2.Equals("");
+		bool emptyInputA3 = ans3.Equals("");
+		bool emptyInputA4 = ans4.Equals("");
+		bool emptyInputCA = correctAns.Equals("");
 
-        
-        // checks if the difficulty remained the same
-        if (dropValuebefore.Equals(dropValueafter))
-        {
-            if (comp1 == true)
-            {
-                GetQuestion getQuestion = new GetQuestion();
-                getQuestion.uploadQuestion(q, ans1, ans2, ans3, ans4, correctA, StaticVariable.id);
-                crudQuestion.UpdateQuestion(QuestionData.world, chapterString, dropValueafter, getQuestion);
-                setText();
-            }
-            else if (comp2 == true)
-            {
-                GetQuestion getQuestion = new GetQuestion();
-                getQuestion.uploadQuestion(q, ans1, ans2, ans3, ans4, correctA, StaticVariable.id);
-                crudQuestion.UpdateQuestion(QuestionData.world, chapterString, dropValueafter, getQuestion);
-                setText();
-            }
-            else if (comp3 == true)
-            {
-                GetQuestion getQuestion = new GetQuestion();
-                getQuestion.uploadQuestion(q, ans1, ans2, ans3, ans4, correctA, StaticVariable.id);
-                crudQuestion.UpdateQuestion(QuestionData.world, chapterString, dropValueafter, getQuestion);
-                setText();
-            }
-            else if (comp4 == true)
-            {
-                GetQuestion getQuestion = new GetQuestion();
-                getQuestion.uploadQuestion(q, ans1, ans2, ans3, ans4, correctA, StaticVariable.id);
-                crudQuestion.UpdateQuestion(QuestionData.world, chapterString, dropValueafter, getQuestion);
-                setText();
-            }
-            else
-            {
-                infoText.SetActive(true);
-            }
-        } else
-        {
-            if (comp1 == true)
-            {
-                GetQuestion getQuestion = new GetQuestion();
-                getQuestion.uploadQuestion(q, ans1, ans2, ans3, ans4, correctA, StaticVariable.id);
-                crudQuestion.UpdateQuestionDifficulty(QuestionData.world, chapterString, dropValuebefore, dropValueafter, getQuestion);
-                setText();
-            }
-            else if (comp2 == true)
-            {
-                GetQuestion getQuestion = new GetQuestion();
-                getQuestion.uploadQuestion(q, ans1, ans2, ans3, ans4, correctA, StaticVariable.id);
-                crudQuestion.UpdateQuestionDifficulty(QuestionData.world, chapterString, dropValuebefore, dropValueafter, getQuestion);
-                setText();
-            }
-            else if (comp3 == true)
-            {
-                GetQuestion getQuestion = new GetQuestion();
-                getQuestion.uploadQuestion(q, ans1, ans2, ans3, ans4, correctA, StaticVariable.id);
-                crudQuestion.UpdateQuestionDifficulty(QuestionData.world, chapterString, dropValuebefore, dropValueafter, getQuestion);
-                setText();
-            }
-            else if (comp4 == true)
-            {
-                GetQuestion getQuestion = new GetQuestion();
-                getQuestion.uploadQuestion(q, ans1, ans2, ans3, ans4, correctA, StaticVariable.id);
-                crudQuestion.UpdateQuestionDifficulty(QuestionData.world, chapterString, dropValuebefore, dropValueafter, getQuestion);
-                setText();
-            }
-            else
-            {
-                infoText.SetActive(true);
-            }
-            
-        }
+		//checks if every input field has a value otherwise error message
+		if (emptyInputQ | emptyInputA1 | emptyInputA2 | emptyInputA3 | emptyInputA4 | emptyInputCA)
+		{
+			Debug.Log("No Input given");
+			setEmptyText();
+		}
+		else
+		{
+			// checks if the difficulty remained the same
+			if (dropValuebefore.Equals(dropValueafter))
+			{
+				if (comp1 == true)
+				{
+					GetQuestion getQuestion = new GetQuestion();
+					getQuestion.uploadQuestion(q, ans1, ans2, ans3, ans4, correctA, StaticVariable.id);
+					crudQuestion.UpdateQuestion(QuestionData.world, chapterString, dropValueafter, getQuestion);
+					setText();
+				}
+				else if (comp2 == true)
+				{
+					GetQuestion getQuestion = new GetQuestion();
+					getQuestion.uploadQuestion(q, ans1, ans2, ans3, ans4, correctA, StaticVariable.id);
+					crudQuestion.UpdateQuestion(QuestionData.world, chapterString, dropValueafter, getQuestion);
+					setText();
+				}
+				else if (comp3 == true)
+				{
+					GetQuestion getQuestion = new GetQuestion();
+					getQuestion.uploadQuestion(q, ans1, ans2, ans3, ans4, correctA, StaticVariable.id);
+					crudQuestion.UpdateQuestion(QuestionData.world, chapterString, dropValueafter, getQuestion);
+					setText();
+				}
+				else if (comp4 == true)
+				{
+					GetQuestion getQuestion = new GetQuestion();
+					getQuestion.uploadQuestion(q, ans1, ans2, ans3, ans4, correctA, StaticVariable.id);
+					crudQuestion.UpdateQuestion(QuestionData.world, chapterString, dropValueafter, getQuestion);
+					setText();
+				}
+				else
+				{
+					setIncorrectText();
+				}
+			}
+			else
+			{
+				if (comp1 == true)
+				{
+					GetQuestion getQuestion = new GetQuestion();
+					getQuestion.uploadQuestion(q, ans1, ans2, ans3, ans4, correctA, StaticVariable.id);
+					crudQuestion.UpdateQuestionDifficulty(QuestionData.world, chapterString, dropValuebefore, dropValueafter, getQuestion);
+					setText();
+				}
+				else if (comp2 == true)
+				{
+					GetQuestion getQuestion = new GetQuestion();
+					getQuestion.uploadQuestion(q, ans1, ans2, ans3, ans4, correctA, StaticVariable.id);
+					crudQuestion.UpdateQuestionDifficulty(QuestionData.world, chapterString, dropValuebefore, dropValueafter, getQuestion);
+					setText();
+				}
+				else if (comp3 == true)
+				{
+					GetQuestion getQuestion = new GetQuestion();
+					getQuestion.uploadQuestion(q, ans1, ans2, ans3, ans4, correctA, StaticVariable.id);
+					crudQuestion.UpdateQuestionDifficulty(QuestionData.world, chapterString, dropValuebefore, dropValueafter, getQuestion);
+					setText();
+				}
+				else if (comp4 == true)
+				{
+					GetQuestion getQuestion = new GetQuestion();
+					getQuestion.uploadQuestion(q, ans1, ans2, ans3, ans4, correctA, StaticVariable.id);
+					crudQuestion.UpdateQuestionDifficulty(QuestionData.world, chapterString, dropValuebefore, dropValueafter, getQuestion);
+					setText();
+				}
+				else
+				{
+					setIncorrectText();
+				}
+
+			}
+		}
     }
 
     public void deleteQuestion()

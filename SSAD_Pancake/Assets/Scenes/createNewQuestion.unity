@@ -355,7 +355,6 @@ MonoBehaviour:
   dropdown: {fileID: 0}
   dropValue: 
   dropIndex: 0
-  chapter: 0
   chapterString: 
 --- !u!1 &609777530
 GameObject:
@@ -1941,7 +1940,7 @@ PrefabInstance:
     - target: {fileID: 3687131687227079476, guid: 58e1eeb8245f4424e9448a137e1a7677,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -584.1
+      value: -610.8001
       objectReference: {fileID: 0}
     - target: {fileID: 3687131687227079476, guid: 58e1eeb8245f4424e9448a137e1a7677,
         type: 3}
@@ -1951,7 +1950,7 @@ PrefabInstance:
     - target: {fileID: 3687131687227079476, guid: 58e1eeb8245f4424e9448a137e1a7677,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 363.8
+      value: 310.4
       objectReference: {fileID: 0}
     - target: {fileID: 3687131687227079476, guid: 58e1eeb8245f4424e9448a137e1a7677,
         type: 3}
