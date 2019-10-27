@@ -9,6 +9,7 @@ public class PlayerGameCreation : MonoBehaviour
     public Text errorList;
     public Text loading;
     public Text success;
+    public Canvas shareButton;
     public Canvas view;
     public Canvas successCanvas;
     public Dropdown worldList;
@@ -28,6 +29,7 @@ public class PlayerGameCreation : MonoBehaviour
     private IEnumerator coroutine;
     IEnumerator Start()
     {
+        shareButton.enabled = false;
         view.enabled = false;
         successCanvas.enabled = false;
         loading.enabled = true;
@@ -135,9 +137,10 @@ public class PlayerGameCreation : MonoBehaviour
             }
             view.enabled = false;
             successCanvas.enabled = true;
-            errorList.text = "testing 1 2 3";
-            errorList.enabled = true;
-            string returnValue = crudqn.studentAddNewQuestions("userid1159", allQuestions, selectedQuestions.Count);
+            shareButton.enabled = true;
+            /*errorList.text = "testing 1 2 3";
+            errorList.enabled = true;*/
+            string returnValue = crudqn.studentAddNewQuestions(StaticVariable.UserID/*"userid1159"*/, allQuestions, selectedQuestions.Count);
             
             
             success.text = "Game ID: '" + returnValue + "'.";
