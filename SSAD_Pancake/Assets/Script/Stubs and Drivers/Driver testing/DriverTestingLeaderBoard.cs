@@ -35,10 +35,16 @@ public class DriverTestingLeaderBoard : MonoBehaviour
         Debug.Log("Call Score manager to get data");
         crudscore.getStatistics(world);
 
-        printSuccessMsg(true);
+        printSuccessMsg2(true);
     }
 
-    public void printSuccessMsg(bool sc)
+    public void printSuccessMsg(StudentScores[] dummy, int dummyy)
+    {
+        Debug.Log("CRUD called");
+    }
+
+
+    public void printSuccessMsg2(bool dummy)
     {
         Debug.Log("CRUD called");
     }

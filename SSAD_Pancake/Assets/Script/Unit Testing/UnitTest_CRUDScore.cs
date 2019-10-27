@@ -91,14 +91,14 @@ public class UnitTest_CRUDScore : MonoBehaviour
             Debug.Log("Test failed");
     }
 
-    public void CallBackFunction_WithTrue(bool sc)
+    public void CallBackFunction_WithTrue(StudentScores[] scores,int size)
     {
-        assert(sc, true);
+        assert(size>0, true);
     }
 
-    public void CallBackFunction_WithFalse(bool sc)
+    public void CallBackFunction_WithFalse(StudentScores[] scores,int size) 
     {
-        assert(sc, false);
+        assert(size==0, false);
     }
 
     public void CallBackFunction_WithTrue(StudentScores sc)

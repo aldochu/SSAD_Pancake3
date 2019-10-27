@@ -22,7 +22,9 @@ public class LeaderboardController : MonoBehaviour {
     public HighscoreTableTransformer transformer;
     public string username;
     public string userscore;
+    public string userrank;
     public bool gotUserScore = false;
+    public StudentScores[] OrderedScoreList;
 
     private void Awake() {
         Debug.Log("Awake:" + SceneManager.GetActiveScene().name);
@@ -52,6 +54,7 @@ public class LeaderboardController : MonoBehaviour {
         Debug.Log("call back executed");
         username = myScore.name;
         userscore = myScore.scores.ToString();
+        dbClass.getLeaderBoard(world, chapter, mode, callback);
         gotUserScore = true;
     }
 
@@ -61,15 +64,36 @@ public class LeaderboardController : MonoBehaviour {
         dbClass.getLeaderBoard(world, chapter, mode, callback);
     }
     
-    public void callback(bool callback){
-        gotData = callback;
+    public void callback(StudentScores[] scores, int index){             
+        OrderedScoreList = new StudentScores[11];
+        for (int i = 0; i < 11; i++)
+        {
+            OrderedScoreList[i] = new StudentScores();
+        }
+
+        for (int i = 0; i < 11 && i<index; i++)
+        {
+            OrderedScoreList[i] = scores[index-i-1];
+            //Debug.Log("Score: " + OrderedScoreList[i].name);
+        }
+
+        for (int i = 0; i<index; i++)
+        {
+            if (scores[index-i-1].name == username)
+            {
+                userrank = (i+1).ToString();
+                break;
+            }
+        }
+        gotData = true;
         Debug.Log(gotData);
     }
 
     void Update(){
         if (gotData) {
             int i = 0;
-            foreach (StudentScores s in dbClass.OrderedScoreList) {
+            Debug.Log(OrderedScoreList[0].scores);
+            foreach (StudentScores s in OrderedScoreList) {
                 Debug.Log(string.Format("Key = {0}, Value = {1}", s.scores,s.name));
                 highscores[i].score = s.scores;
                 highscores[i].name = s.name;
@@ -79,11 +103,13 @@ public class LeaderboardController : MonoBehaviour {
             }
             gotData = false;
             Debug.Log(gotData);
-        }
-        if(gotUserScore){
-            userIdOnBoard.text = username;
-            userScore.text = userscore;
-            gotUserScore = false;
+            if(userScore != null){
+                Debug.Log(username);
+                //userIdOnBoard.text = username;
+                userScore.text = userscore;
+                userRank.text = userrank;
+                gotUserScore = false;
+            }
         }
     }
 

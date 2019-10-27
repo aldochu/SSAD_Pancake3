@@ -10,7 +10,6 @@ public class CRUDScores : MonoBehaviour
 {
     private DatabaseReference mDatabaseRef;
     private int threshold = 10000;
-    public StudentScores[] OrderedScoreList;
     public Dictionary<string, double> passingRateDict;
     public Dictionary<string, int> totalAttemptDict;
     public Dictionary<string, int> highestScoreDict;
@@ -85,7 +84,7 @@ public class CRUDScores : MonoBehaviour
         mDatabaseRef.Child("scores").Child(world).Child(chap).Child(difficulty).Child(userid).SetRawJsonValueAsync(json);
     }
 
-    public void getLeaderBoard(string world, string chap, string difficulty, System.Action<bool> callback)
+    public void getLeaderBoard(string world, string chap, string difficulty, System.Action<StudentScores[],int> callback)
     {
         FirebaseDatabase.DefaultInstance
       .GetReference("scores").Child(world).Child(chap).Child(difficulty).OrderByChild("scores")
@@ -102,13 +101,6 @@ public class CRUDScores : MonoBehaviour
              // Debug.Log("Code Runs");
               DataSnapshot snapshot = task.Result;
 
-              
-              OrderedScoreList = new StudentScores[11];
-              for (int i = 0; i < 11; i++)
-              {
-                  OrderedScoreList[i] = new StudentScores();
-              }
-
               int index = 0;
               //currently order is ascending
               StudentScores[] scoresList = new StudentScores[200];
@@ -120,18 +112,14 @@ public class CRUDScores : MonoBehaviour
               }
                 //Debug.Log(index);
             //   StudentScores[] OrderedScoreList = new StudentScores[index];
-              for (int i = 0; i < 11 && i<index; i++)
-              {
-                  OrderedScoreList[i] = scoresList[index-i-1];
-                  //Debug.Log("Score: " + OrderedScoreList[i].name);
-              }
+
 
               if (index == 0)
               {
-                  callback(false);
+                  callback(null, 0);
               }
               else
-              callback(true);
+              callback(scoresList, index);
               //Debug.Log("Code End");
          }
       });

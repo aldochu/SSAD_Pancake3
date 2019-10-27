@@ -41,6 +41,9 @@ public class HighscoreTableTransformer : MonoBehaviour {
         if (!String.IsNullOrEmpty(name)){
             entryTransform.Find("PortableAvatar").gameObject.SetActive(true);
         }
+        else{
+            entryTransform.Find("PortableAvatar").gameObject.SetActive(false);
+        }
     }
 
     private void CreateHighscoreEntryTransform(LeaderboardController.HighscoreEntry highscoreEntry, Transform container, List<Transform> transformList) {

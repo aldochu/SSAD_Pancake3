@@ -30,7 +30,7 @@ public class PerformanceTest_CRUDScore : MonoBehaviour
         crudscore.getLeaderBoard(world, chap, difficulty, printgetLeaderBoardTime);
     }
 
-    public void printgetLeaderBoardTime(bool dummy)
+    public void printgetLeaderBoardTime(StudentScores[] dummy,int dummyy)
     {
         Debug.Log("Getting getLeaderBoard data at: " + System.DateTime.Now);
     }
