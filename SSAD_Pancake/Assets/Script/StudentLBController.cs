@@ -79,4 +79,9 @@ public class StudentLBController : MonoBehaviour {
         getLeaderboard = true;
 
     }
+
+    public void BackToLastScene()
+    {
+        Application.LoadLevel(StaticVariable.lastVisited);
+    }
 }

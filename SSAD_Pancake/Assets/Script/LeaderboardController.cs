@@ -116,7 +116,12 @@ public class LeaderboardController : MonoBehaviour {
     public void BackToLastScene()
     {
         Application.LoadLevel(StaticVariable.lastVisited);
-        
+    }
+
+    public void GoToStudentGameLeaderboard()
+    {
+        StaticVariable.lastVisited = SceneManager.GetActiveScene().name;
+        Application.LoadLevel("3rdLB");   
     }
 
     private void updateQueryString(string rawInput){

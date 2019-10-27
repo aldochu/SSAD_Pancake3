@@ -38,12 +38,16 @@ public class HighscoreTableTransformer : MonoBehaviour {
 
         string name = highscoreEntry.name;
         entryTransform.Find("nameText").GetComponent<Text>().text = name;
-        if (!String.IsNullOrEmpty(name)){
-            entryTransform.Find("PortableAvatar").gameObject.SetActive(true);
+        if (entryTransform.Find("PortableAvatar") !=null)
+        {
+            if (!String.IsNullOrEmpty(name)){
+                entryTransform.Find("PortableAvatar").gameObject.SetActive(true);
+            }
+            else{
+                entryTransform.Find("PortableAvatar").gameObject.SetActive(false);
+            }
         }
-        else{
-            entryTransform.Find("PortableAvatar").gameObject.SetActive(false);
-        }
+
     }
 
     private void CreateHighscoreEntryTransform(LeaderboardController.HighscoreEntry highscoreEntry, Transform container, List<Transform> transformList) {

@@ -2037,43 +2037,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd362cc01c584940a54be0fe885faf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OrderedScoreList:
-  - name: 
-    scores: 0
-    attempt: 0
-  - name: 
-    scores: 0
-    attempt: 0
-  - name: 
-    scores: 0
-    attempt: 0
-  - name: 
-    scores: 0
-    attempt: 0
-  - name: 
-    scores: 0
-    attempt: 0
-  - name: 
-    scores: 0
-    attempt: 0
-  - name: 
-    scores: 0
-    attempt: 0
-  - name: 
-    scores: 0
-    attempt: 0
-  - name: 
-    scores: 0
-    attempt: 0
-  - name: 
-    scores: 0
-    attempt: 0
-  - name: 
-    scores: 0
-    attempt: 0
-  - name: 
-    scores: 0
-    attempt: 0
 --- !u!4 &1192398889
 Transform:
   m_ObjectHideFlags: 0
@@ -3150,7 +3113,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1969810645}
         m_MethodName: BackToLastScene
         m_Mode: 1
         m_Arguments:
