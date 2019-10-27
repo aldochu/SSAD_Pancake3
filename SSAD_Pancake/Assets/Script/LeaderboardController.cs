@@ -39,13 +39,11 @@ public class LeaderboardController : MonoBehaviour {
         }
         if (SceneManager.GetActiveScene().name =="NewLB"){
             transformer.ConstructTableForStudent(highscores);
+            userId.text = StaticVariable.UserID;
+            dbClass.getUserScore(world, chapter, mode, StaticVariable.UserID, getUserScoreCallback);
         }
         else{
             transformer.ConstructTable(highscores);
-        }
-        if (userId != null){
-            userId.text = StaticVariable.UserID;
-            dbClass.getUserScore(world, chapter, mode, StaticVariable.UserID, getUserScoreCallback);
         }
     }
 
@@ -62,7 +60,7 @@ public class LeaderboardController : MonoBehaviour {
         updateQueryString(Dropdown.options[Dropdown.value].text);
         dbClass.getLeaderBoard(world, chapter, mode, callback);
     }
-
+    
     public void callback(bool callback){
         gotData = callback;
         Debug.Log(gotData);

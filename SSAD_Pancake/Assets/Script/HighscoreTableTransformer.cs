@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CodeMonkey.Utils;
+using System;
 
 public class HighscoreTableTransformer : MonoBehaviour {
 
     private Transform entryContainer;
     private Transform entryTemplate;
     private List<Transform> highscoreEntryTransformList;
-    public LeaderboardController controller;
 
     private void Awake() {
         entryContainer = transform.Find("highscoreEntryContainer");
@@ -38,8 +38,9 @@ public class HighscoreTableTransformer : MonoBehaviour {
 
         string name = highscoreEntry.name;
         entryTransform.Find("nameText").GetComponent<Text>().text = name;
-
-        entryTransform.Find("PortableAvatar").gameObject.SetActive(true);
+        if (!String.IsNullOrEmpty(name)){
+            entryTransform.Find("PortableAvatar").gameObject.SetActive(true);
+        }
     }
 
     private void CreateHighscoreEntryTransform(LeaderboardController.HighscoreEntry highscoreEntry, Transform container, List<Transform> transformList) {
@@ -101,6 +102,8 @@ public class HighscoreTableTransformer : MonoBehaviour {
 
     private void CreateHighscoreEntryTransformForStudent(LeaderboardController.HighscoreEntry highscoreEntry, Transform container, List<Transform> transformList) {
         float templateHeight = 31f;
+        Debug.Log(entryTemplate);
+        Debug.Log(container);
         Transform entryTransform = Instantiate(entryTemplate, container);
         RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
         entryRectTransform.anchoredPosition = new Vector2(0, -30-templateHeight * transformList.Count);

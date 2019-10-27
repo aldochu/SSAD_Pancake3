@@ -267,7 +267,7 @@ public class CRUDScores : MonoBehaviour
     });
     }
 
-    public void getStudentGameLeaderBoard(string gameID, System.Action<StudentScores[]> callback)
+    public void getStudentGameLeaderBoard(string gameID, System.Action<StudentScores[],int> callback)
     {
         FirebaseDatabase.DefaultInstance
       .GetReference("studentGame")
@@ -315,26 +315,12 @@ public class CRUDScores : MonoBehaviour
               }
 
 
-              OrderedScoreList = new StudentScores[11];
-              for (int i = 0; i < 11; i++)
-              {
-                  OrderedScoreList[i] = new StudentScores();
-              }
-
-              //Debug.Log(index);
-              //   StudentScores[] OrderedScoreList = new StudentScores[index];
-              for (int i = 0; i < 11 && i < Scoreindex; i++)
-              {
-                  OrderedScoreList[i] = scoresList[Scoreindex - i - 1];
-                  //Debug.Log("Score: " + OrderedScoreList[i].name);
-              }
-
               if (Scoreindex == 0)
               {
-                  callback(null);
+                  callback(null, 0);
               }
               else
-                  callback(OrderedScoreList);
+                  callback(scoresList, Scoreindex);
               //Debug.Log("Code End");
           }
       });
