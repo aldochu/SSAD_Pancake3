@@ -36,6 +36,7 @@ public class worldToUniverseSceneSwitch : MonoBehaviour
     {
 		StaticVariable.game = 1;
         StaticVariable.difficulty = "easy";
+        StaticVariable.chapter = "chap1";
         SceneManager.LoadScene("CharacterSelection");
     }
 
@@ -43,6 +44,7 @@ public class worldToUniverseSceneSwitch : MonoBehaviour
     {
 		StaticVariable.game = 1;
         StaticVariable.difficulty = "medium";
+        StaticVariable.chapter = "chap1";
         SceneManager.LoadScene("CharacterSelection");
     }
 
@@ -50,6 +52,7 @@ public class worldToUniverseSceneSwitch : MonoBehaviour
     {
 		StaticVariable.game = 1;
         StaticVariable.difficulty = "hard";
+        StaticVariable.chapter = "chap1";
         SceneManager.LoadScene("CharacterSelection");
     }
 
@@ -57,6 +60,7 @@ public class worldToUniverseSceneSwitch : MonoBehaviour
     {
 		StaticVariable.game = 2;
         StaticVariable.difficulty = "easy";
+        StaticVariable.chapter = "chap2";
         SceneManager.LoadScene("CharacterSelection");
     }
 
@@ -64,6 +68,7 @@ public class worldToUniverseSceneSwitch : MonoBehaviour
     {
 		StaticVariable.game = 2;
         StaticVariable.difficulty = "medium";
+        StaticVariable.chapter = "chap2";
         SceneManager.LoadScene("CharacterSelection");
     }
 
@@ -71,6 +76,7 @@ public class worldToUniverseSceneSwitch : MonoBehaviour
     {
 		StaticVariable.game = 2;
         StaticVariable.difficulty = "hard";
+        StaticVariable.chapter = "chap2";
         SceneManager.LoadScene("CharacterSelection");
     }
 
@@ -78,6 +84,7 @@ public class worldToUniverseSceneSwitch : MonoBehaviour
     {
 		StaticVariable.game = 3;
         StaticVariable.difficulty = "easy";
+        StaticVariable.chapter = "chap3";
         SceneManager.LoadScene("CharacterSelection");
     }
 
@@ -85,6 +92,7 @@ public class worldToUniverseSceneSwitch : MonoBehaviour
     {
 		StaticVariable.game = 3;
         StaticVariable.difficulty = "medium";
+        StaticVariable.chapter = "chap3";
         SceneManager.LoadScene("CharacterSelection");
     }
 
@@ -92,6 +100,7 @@ public class worldToUniverseSceneSwitch : MonoBehaviour
     {
 		StaticVariable.game = 3;
         StaticVariable.difficulty = "hard";
+        StaticVariable.chapter = "chap3";
         SceneManager.LoadScene("CharacterSelection");
     }
 
@@ -99,6 +108,7 @@ public class worldToUniverseSceneSwitch : MonoBehaviour
     {
 		StaticVariable.game = 4;
         StaticVariable.difficulty = "easy";
+        StaticVariable.chapter = "chap4";
         SceneManager.LoadScene("CharacterSelection");
     }
 
@@ -106,6 +116,7 @@ public class worldToUniverseSceneSwitch : MonoBehaviour
     {
 		StaticVariable.game = 4;
         StaticVariable.difficulty = "medium";
+        StaticVariable.chapter = "chap4";
         SceneManager.LoadScene("CharacterSelection");
     }
 
@@ -113,6 +124,7 @@ public class worldToUniverseSceneSwitch : MonoBehaviour
     {
 		StaticVariable.game = 4;
         StaticVariable.difficulty = "hard";
+        StaticVariable.chapter = "chap4";
         SceneManager.LoadScene("CharacterSelection");
     }
 

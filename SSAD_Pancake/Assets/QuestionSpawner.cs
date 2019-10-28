@@ -13,9 +13,9 @@ public class QuestionSpawner : MonoBehaviour
     public AudioSource point;
     public AudioSource fail;
     int NumQuestions;
-    public string world = StaticVariable.world;
-    public string chap = StaticVariable.chapter;
-    public string difficulty = StaticVariable.difficulty;
+    string world; // = StaticVariable.world;
+    string chap; // = StaticVariable.chapter;
+    string difficulty; // = StaticVariable.difficulty;
     public Text question;
     public Text answer1;
     public Text answer2;
@@ -45,6 +45,10 @@ public class QuestionSpawner : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
+        world = StaticVariable.world;
+        chap = StaticVariable.chapter;
+        difficulty = StaticVariable.difficulty;
+        Debug.Log(world + " " + chap + " " + difficulty);
         shareButton.SetActive(false);
         character = StaticVariable.characterSelect;
         setCharacterMovement(character, false);
@@ -241,7 +245,7 @@ public class QuestionSpawner : MonoBehaviour
         {
             NumQuestions = 10;
         }
-        else if (difficulty=="normal")
+        else if (difficulty=="medium")
         {
             NumQuestions = 15;
         }
@@ -249,7 +253,7 @@ public class QuestionSpawner : MonoBehaviour
         {
             NumQuestions = 20;
         }
-
+        Debug.Log(NumQuestions);
         int totalQuestion = int.Parse(snapshot.ChildrenCount.ToString());
         if (NumQuestions > totalQuestion) //If not enough questions from the database
         {
