@@ -14,16 +14,22 @@ public class CreateNewQuestion : MonoBehaviour
     public string dropValue;
     public int dropIndex;
     public string chapterString;
+    public static string sharingQforProf;
 
     private GameObject infoText;
+    private GameObject shareButton;
 
     // Start is called before the first frame update
     void Start()
     {
         chapterString = QuestionData.chapter;
         dropdown = GameObject.Find("DifficultyDropdown").GetComponent<Dropdown>();
+
         infoText = GameObject.Find("InfoText");
         infoText.SetActive(false);
+
+        shareButton = GameObject.Find("ShareButtonProf");
+        shareButton.SetActive(false);
 
     }
 
@@ -46,6 +52,7 @@ public class CreateNewQuestion : MonoBehaviour
         dropValue = dropdown.options[dropIndex].text;
 
         question = q.text;
+        sharingQforProf = q.text;
         ans1 = a1.text;
         ans2 = a2.text;
         ans3 = a3.text;
@@ -110,6 +117,7 @@ public class CreateNewQuestion : MonoBehaviour
         infoText.GetComponent<Text>().color = Color.white;
         infoText.GetComponent<Text>().text = "Question successfully created";
         infoText.SetActive(true);
+        shareButton.SetActive(true);
     }
 
 	public void setEmptyText()

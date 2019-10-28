@@ -999,7 +999,7 @@ PrefabInstance:
     - target: {fileID: 6098944434982582927, guid: 218feafe517634bb188af7324c8ab99f,
         type: 3}
       propertyPath: m_Options.m_Options.Array.data[1].m_Text
-      value: normal
+      value: medium
       objectReference: {fileID: 0}
     - target: {fileID: 6098944434982582927, guid: 218feafe517634bb188af7324c8ab99f,
         type: 3}
@@ -1317,6 +1317,7 @@ MonoBehaviour:
   dropIndex: 0
   chapterString: 
   infoText: {fileID: 0}
+  shareButton: {fileID: 0}
 --- !u!4 &740368853
 Transform:
   m_ObjectHideFlags: 0

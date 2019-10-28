@@ -21,6 +21,8 @@ public class ModifyChapter : MonoBehaviour
     public int dropIndex;
     public string chapterString;
     public GameObject infoText;
+    public GameObject shareButton;
+    public static string sharingQforProf;
     
    
     
@@ -31,13 +33,15 @@ public class ModifyChapter : MonoBehaviour
         dropdown = GameObject.Find("DifficultyDropdown").GetComponent<Dropdown>();
         infoText = GameObject.Find("InfoText");
         infoText.SetActive(false);
+        shareButton = GameObject.Find("ShareButtonProf");
+        shareButton.SetActive(false);
 
         if (QuestionData.difficulty.Equals("easy"))
         {
             dropdown.value = 0;
             dropValuebefore = dropdown.options[0].text;
         }
-        else if (QuestionData.difficulty.Equals("normal"))
+        else if (QuestionData.difficulty.Equals("medium"))
         {
             dropdown.value = 1;
             dropValuebefore = dropdown.options[1].text;
@@ -81,6 +85,7 @@ public class ModifyChapter : MonoBehaviour
                 
         Debug.Log("Difficulty: " + QuestionData.difficulty);
         Debug.Log("ID: " + StaticVariable.id);
+        Debug.Log("Question: " + questionObj.question.question);
     }
 
     public void changeChapter(int chapter)
@@ -101,7 +106,7 @@ public class ModifyChapter : MonoBehaviour
 
     public void DropdownIndexChanged(int index)
     {
-        QuestionData.difficulty = index == 0 ? "easy" : index == 1 ? "normal" : "hard";
+        QuestionData.difficulty = index == 0 ? "easy" : index == 1 ? "medium" : "hard";
         GameObject.Find("ButtonScrollList").GetComponent<ButtonListControl>().refreshList();
     }
 
@@ -110,6 +115,7 @@ public class ModifyChapter : MonoBehaviour
         infoText.GetComponent<Text>().color = Color.white;
         infoText.GetComponent<Text>().text = "Question successfully updated";
         infoText.SetActive(true);
+        shareButton.SetActive(true);
     }
 
 	public void setEmptyText()
@@ -139,6 +145,7 @@ public class ModifyChapter : MonoBehaviour
         dropValueafter = dropdown.options[dropIndex].text;
 
         q = question.text;
+        sharingQforProf = question.text;
         ans1 = a1.text;
         ans2 = a2.text;
         ans3 = a3.text;
