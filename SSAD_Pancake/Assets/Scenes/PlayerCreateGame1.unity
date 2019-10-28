@@ -6428,6 +6428,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64949495818874e42917e607ecf31abd, type: 3}
+--- !u!1 &1668910629 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3120750570954683126, guid: 64949495818874e42917e607ecf31abd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1668910628}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1676718041
 GameObject:
   m_ObjectHideFlags: 0
@@ -7909,7 +7915,7 @@ MonoBehaviour:
   errorList: {fileID: 245630974}
   loading: {fileID: 1546419252}
   success: {fileID: 1676718043}
-  shareButton: {fileID: 0}
+  shareButton: {fileID: 1668910629}
   view: {fileID: 190230363}
   successCanvas: {fileID: 1098233383}
   worldList: {fileID: 385351691}
