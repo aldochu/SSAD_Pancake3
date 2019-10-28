@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/QuestionOverview.unity
     guid: b0f14e292d40842579cd0c20135472bb
   - enabled: 1
+    path: Assets/Scenes/ShareNewQuestion.unity
+    guid: c23d62a1826c04d9cb43b2937d05716b
+  - enabled: 1
     path: Assets/Scenes/EditQandA.unity
     guid: 3461d98a9e98649b98a041958900a88e
   - enabled: 1
@@ -80,4 +83,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/3rdLB.unity
     guid: 685a5d81955d44d42a58fbf285e415cd
+  - enabled: 1
+    path: Assets/Scenes/ShareUpdatedQuestion.unity
+    guid: b7da3897ff84a441795de7791ac978c4
   m_configObjects: {}
