@@ -46,7 +46,7 @@ public class Statistics : MonoBehaviour
     }
 
     void Awake() {
-        dbClass.getStatistics("world1");
+        //dbClass.getStatistics("world1");
     }
 
     void Update(){

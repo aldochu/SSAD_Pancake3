@@ -59,7 +59,7 @@ public class Statistic2 : MonoBehaviour
     }
 
     void Awake() {
-        dbClass.getStatistic2("world1");
+        //dbClass.getStatistic2("world1");
     }
 
     void Update(){
