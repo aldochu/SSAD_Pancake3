@@ -1400,22 +1400,22 @@ PrefabInstance:
         type: 3}
       propertyPath: hero2
       value: 
-      objectReference: {fileID: 364377604}
+      objectReference: {fileID: 1556337774}
     - target: {fileID: 2729748872905609305, guid: 4a85734474ba54040b896994d9847b9b,
         type: 3}
       propertyPath: hero2fall
       value: 
-      objectReference: {fileID: 788422335}
+      objectReference: {fileID: 744193636}
     - target: {fileID: 2729748872905609305, guid: 4a85734474ba54040b896994d9847b9b,
         type: 3}
       propertyPath: hero3
       value: 
-      objectReference: {fileID: 1556337774}
+      objectReference: {fileID: 788422335}
     - target: {fileID: 2729748872905609305, guid: 4a85734474ba54040b896994d9847b9b,
         type: 3}
       propertyPath: hero3fall
       value: 
-      objectReference: {fileID: 744193636}
+      objectReference: {fileID: 364377604}
     - target: {fileID: 2729748872905609305, guid: 4a85734474ba54040b896994d9847b9b,
         type: 3}
       propertyPath: shareButton
@@ -1496,7 +1496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd362cc01c584940a54be0fe885faf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OrderedScoreList: []
 --- !u!1001 &6252593358957732966
 PrefabInstance:
   m_ObjectHideFlags: 0
