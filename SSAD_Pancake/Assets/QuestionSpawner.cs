@@ -48,6 +48,18 @@ public class QuestionSpawner : MonoBehaviour
         world = StaticVariable.world;
         chap = StaticVariable.chapter;
         difficulty = StaticVariable.difficulty;
+        if (difficulty == "easy")
+        {
+            NumQuestions = 10;
+        }
+        else if (difficulty == "medium")
+        {
+            NumQuestions = 15;
+        }
+        else
+        {
+            NumQuestions = 20;
+        }
         Debug.Log(world + " " + chap + " " + difficulty);
         shareButton.SetActive(false);
         character = StaticVariable.characterSelect;
