@@ -251,6 +251,7 @@ public class game : MonoBehaviour
                 
             }
         }
+        lockedOrNot();
         /*
         chap = "chap1";
         world = "world1";
@@ -262,8 +263,8 @@ public class game : MonoBehaviour
         getStudentScores(world, chap, userid, difficulty);
         callbackdone = false;
         */
-        
-        
+
+
     }
     
 
@@ -638,7 +639,7 @@ public class game : MonoBehaviour
                         gotComplete = true;
                         */
                         //game finished
-                        StaticVariable.game1 = true;
+                        StaticVariable.game2 = true;
                     }
                     else
                     {
@@ -661,7 +662,7 @@ public class game : MonoBehaviour
                         chapter2HardButton.interactable = true;
                         */
                         gotComplete = true;
-                        StaticVariable.game2 = true;
+                        StaticVariable.game3 = true;
                     }
                     else
                     {
@@ -684,7 +685,7 @@ public class game : MonoBehaviour
                         chapter3HardButton.interactable = true;
                         */
                         gotComplete = true;
-                        StaticVariable.game3 = true;
+                        StaticVariable.game4 = true;
                     }
                     else
                     {
@@ -707,7 +708,7 @@ public class game : MonoBehaviour
                         chapter4HardButton.interactable = true;
                         */
                         gotComplete = true;
-                        StaticVariable.game4 = true;
+                        
                     }
                     else
                     {
