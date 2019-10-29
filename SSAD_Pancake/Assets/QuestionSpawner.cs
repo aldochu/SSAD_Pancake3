@@ -127,13 +127,13 @@ public class QuestionSpawner : MonoBehaviour
     {
         startButton.SetActive(false);
         Time.timeScale = 1;
-        if (difficulty == "normal")
+        if (difficulty == "medium")
         {
-            Time.timeScale = 1.1f;
+            Time.timeScale = 1.2f;
         }
         if (difficulty == "hard")
         {
-            Time.timeScale = 1.3f;
+            Time.timeScale = 1.35f;
         }
     }
     public void playerMoveQn1()
