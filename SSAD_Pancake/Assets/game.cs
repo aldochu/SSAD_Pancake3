@@ -222,7 +222,7 @@ public class game : MonoBehaviour
 
     // Start is called before the first frame update
     //
-    void Start()
+    IEnumerator Start()
     {
         chapter1Panel.SetActive(false);
         chapter2Panel.SetActive(false);
@@ -243,12 +243,12 @@ public class game : MonoBehaviour
                 Debug.Log(i+" "+d);
                 chap = i;
                 difficulty = d;
+                callbackdone = false;
                 crudscore.getUserScore(world, chap, difficulty, userid, myCallbackFunction);
-
+                yield return new WaitUntil(() => callbackdone == true);
                 Debug.Log(callbackdone);
                 //Debug.Log(studentScores.scores);
                 //getStudentScores(world, i, userid, d);
-                
             }
         }
         lockedOrNot();
@@ -294,12 +294,13 @@ public class game : MonoBehaviour
 
     void Update()
     {
+        /*
         if (callbackdone)
         {
             //UItext.text = "my name: " + studentScores.name + " , my Score: " + studentScores.scores.ToString();
             callbackdone = false;
         }
-        lockedOrNot();
+        lockedOrNot();*/
     }
 
     public void getStudentScores(string world, string chap, string userid, string difficulty)
