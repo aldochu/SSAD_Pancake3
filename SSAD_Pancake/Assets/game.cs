@@ -640,7 +640,14 @@ public class game : MonoBehaviour
                         gotComplete = true;
                         */
                         //game finished
-                        StaticVariable.game2 = true;
+                        if ("world1" == world)
+                        {
+                            StaticVariable.game2 = true;
+                        }
+                        else
+                        {
+                            StaticVariable.game2_world2 = true;
+                        }
                     }
                     else
                     {
@@ -663,7 +670,14 @@ public class game : MonoBehaviour
                         chapter2HardButton.interactable = true;
                         */
                         gotComplete = true;
-                        StaticVariable.game3 = true;
+                        if ("world1" == world)
+                        {
+                            StaticVariable.game3 = true;
+                        }
+                        else
+                        {
+                            StaticVariable.game3_world2 = true;
+                        }
                     }
                     else
                     {
@@ -686,7 +700,14 @@ public class game : MonoBehaviour
                         chapter3HardButton.interactable = true;
                         */
                         gotComplete = true;
-                        StaticVariable.game4 = true;
+                        if ("world1" == world)
+                        {
+                            StaticVariable.game4 = true;
+                        }
+                        else
+                        {
+                            StaticVariable.game4_world2 = true;
+                        }
                     }
                     else
                     {

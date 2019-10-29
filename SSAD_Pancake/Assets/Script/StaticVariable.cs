@@ -20,6 +20,11 @@ public class StaticVariable : MonoBehaviour
     public static bool game3;
     public static bool game4;
 
+    public static bool game1_world2 = true;
+    public static bool game2_world2;
+    public static bool game3_world2;
+    public static bool game4_world2;
+
     public static int characterSelect;
     public static string world;
     public static string chapter;
