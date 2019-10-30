@@ -29,10 +29,10 @@ public class LeaderboardController : MonoBehaviour {
     private void Awake() {
         Debug.Log("Awake:" + SceneManager.GetActiveScene().name);
         //For Testing only
-        StaticVariable.UserProfile.avatar.headgear ="1";
-        StaticVariable.UserProfile.avatar.head ="1";
-        StaticVariable.UserProfile.avatar.body ="1";
-        StaticVariable.UserID="userid9702";
+        // StaticVariable.UserProfile.avatar.headgear ="1";
+        // StaticVariable.UserProfile.avatar.head ="1";
+        // StaticVariable.UserProfile.avatar.body ="1";
+        // StaticVariable.UserID="userid9702";
 
         dbClass.getLeaderBoard(world, chapter, mode, callback);
         highscores= new List<HighscoreEntry>(11);
@@ -120,7 +120,7 @@ public class LeaderboardController : MonoBehaviour {
 
     public void GoToStudentGameLeaderboard()
     {
-        StaticVariable.lastVisited = SceneManager.GetActiveScene().name;
+       // StaticVariable.lastVisited = SceneManager.GetActiveScene().name;
         Application.LoadLevel("3rdLB");   
     }
 

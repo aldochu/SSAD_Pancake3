@@ -82,6 +82,6 @@ public class StudentLBController : MonoBehaviour {
 
     public void BackToLastScene()
     {
-        Application.LoadLevel(StaticVariable.lastVisited);
+        Application.LoadLevel("Leaderboard");
     }
 }
