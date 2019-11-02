@@ -696,6 +696,7 @@ MonoBehaviour:
   dropIndex: 0
   chapterString: 
   infoText: {fileID: 0}
+  shareButton: {fileID: 0}
 --- !u!4 &1794979632
 Transform:
   m_ObjectHideFlags: 0
@@ -719,7 +720,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1794979630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95bbf54e7018e496c8b5b1dc63c8d7e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ee1ee08cab7c9f4ea0402d8af4a34b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
@@ -1032,16 +1033,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7634502451549610933, guid: ad223b71505b24ed6ae9505131a70976,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1794979633}
-    - target: {fileID: 7634502451549610933, guid: ad223b71505b24ed6ae9505131a70976,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1794979631}
     - target: {fileID: 7634502451844174070, guid: ad223b71505b24ed6ae9505131a70976,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -1062,6 +1053,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7634502451549610933, guid: ad223b71505b24ed6ae9505131a70976,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1794979633}
+    - target: {fileID: 7634502451549610933, guid: ad223b71505b24ed6ae9505131a70976,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1794979631}
     - target: {fileID: 7634502451844174064, guid: ad223b71505b24ed6ae9505131a70976,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
